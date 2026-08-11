@@ -8,4 +8,5 @@ Python / TypeScript / JavaScript
 
 - [activist #2335](https://github.com/activist-org/activist/pull/2335)：サイドバー内のアイコンサイズを揃え、回帰テストを追加。マージ済み。
 - [mcp-migrate #222](https://github.com/dheerajjha/mcp-migrate/pull/222)：ルールで非表示にした項目数を一覧に追加し、誤った値を検出する処理とテストを追加。マージ済み。
-- [OpenClaw #120658](https://github.com/openclaw/openclaw/pull/120658)：Active Memoryのエラー文までAIが読んでしまう不具合を、実際の環境で再現して修正。確認待ち。
+- [OpenClaw #120658](https://github.com/openclaw/openclaw/pull/120658)：Active Memoryのエラー文までAIが読んでしまう不具合を、実際の環境で再現して修正。レビュー待ち。
+- [Jest #16322](https://github.com/jestjs/jest/pull/16322)：`describe`単位でテストを再実行する機能を追加。レビュー待ち。
