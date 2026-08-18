@@ -8,6 +8,8 @@ TypeScript / JavaScript / Python
 
 ### Merged
 
+- [Jest #16322](https://github.com/jestjs/jest/pull/16322)：
+  `jest.retryTimes()` に `describe` 単位の再実行を追加。
 - [Jest #16344](https://github.com/jestjs/jest/pull/16344)：
   retry 時に無関係な inline snapshot まで削除される問題を修正。
 - [Jest #16343](https://github.com/jestjs/jest/pull/16343)：
@@ -21,8 +23,6 @@ TypeScript / JavaScript / Python
 
 ### Open
 
-- [Jest #16322](https://github.com/jestjs/jest/pull/16322)：
-  `jest.retryTimes()` に `describe` 単位の再実行を追加。
 - [LangChain.js #11329](https://github.com/langchain-ai/langchainjs/pull/11329)：
   Bedrock Converse で retry 設定が正しく反映されるよう修正。
 - [pnpm #13885](https://github.com/pnpm/pnpm/pull/13885)：
