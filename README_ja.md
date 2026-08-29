@@ -12,6 +12,8 @@ TypeScriptとPythonを使い、OSSへのコントリビュートやWebアプリ�
 
 ### Merged
 
+- [OpenClaw #120658](https://github.com/openclaw/openclaw/pull/120658)：
+  Active Memoryの`recall error`がpromptに混ざる問題を再現し、修正。
 - [pnpm #13885](https://github.com/pnpm/pnpm/pull/13885)：
   長い依存パスを含む`.modules.yaml`をRust側でも読めるよう修正。
 - [Jest #16322](https://github.com/jestjs/jest/pull/16322)：
@@ -29,21 +31,21 @@ TypeScriptとPythonを使い、OSSへのコントリビュートやWebアプリ�
 
 ### レビューと調査
 
+- [Jest #16374](https://github.com/jestjs/jest/pull/16374#pullrequestreview-5047656739)：
+  external snapshotの失敗情報に解決済みpathが入り、inline snapshotには入らないことをCircus/Jasmineで確認。
+- [Jest #16345](https://github.com/jestjs/jest/pull/16345#pullrequestreview-5056029310)：
+  prefixが重なるtable keyの補間に挿入順依存があることを指摘し、修正と回帰テストを確認。
 - [Jest #16380](https://github.com/jestjs/jest/pull/16380#pullrequestreview-5017415062)：
   `custom matcher`の結果型で出る型エラーをTypeScript 5.4/5.9で確認。
-- [Jest #16359](https://github.com/jestjs/jest/pull/16359#pullrequestreview-4981957277)：
-  projectの設定順でcoverage結果が変わる問題と、テストがないprojectの集計漏れを確認。
-- [Jest #9210](https://github.com/jestjs/jest/issues/9210#issuecomment-5408569604)：
-  未処理のPromise rejectionの表示を、Node.js 20/24とCircus/Jasmineで確認。
 
 ### Open
 
-- [LangChain.js #11329](https://github.com/langchain-ai/langchainjs/pull/11329)：
-  Bedrock Converseでretry設定が反映されない問題を修正。
-- [Angular Components #33670](https://github.com/angular/components/pull/33670)：
-  `row definition`変更後も古いtemplateが使われる問題を修正。
-- [OpenClaw #120658](https://github.com/openclaw/openclaw/pull/120658)：
-  Active Memoryの`recall error`がpromptに混ざる問題を再現し、修正。
+- [Jest #16402](https://github.com/jestjs/jest/pull/16402)：
+  `snapshotResolver`と`snapshotSerializers`のESM対応を追加。
+- [OpenTelemetry JS Contrib #3707](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3707)：
+  `ioredis` callbackが複数回呼ばれてもspanを重複終了しないよう修正。
+- [workerd #7174](https://github.com/cloudflare/workerd/pull/7174)：
+  worker logへ`console.trace()`のstackを追加し、Inspectorとtailの既存動作を維持。
 
 ## 個人開発
 
