@@ -2,7 +2,7 @@
 
 Requires Node.js 22 or newer. No package installation is needed.
 
-- `config.json`: introductions, links, project descriptions, and selected reviews.
+- `config.json`: introductions, links, project descriptions, and review descriptions.
 - `activity.json`: public GitHub data and the last recorded successful check.
 - `profile.mjs`: fetches data, generates pages, and checks the output.
 - `profile.test.mjs`: offline regression tests and their fixtures.
@@ -19,6 +19,13 @@ To refresh public activity, run `node automation/profile.mjs update`.
 An optional `GITHUB_TOKEN` increases the API rate limit. New items use their
 original GitHub titles or descriptions; configured `en` and `ja` descriptions
 take precedence.
+
+Reviews of other authors' public PRs in external repositories are discovered
+with `reviewed-by`. Each PR appears once: configured review links and descriptions
+take priority; otherwise the latest submitted review link and PR title are used.
+Review lists are paginated, including reviews with an empty body and inline
+comments. Pending reviews and ordinary issue comments are not auto-discovered.
+Additional review or discussion links can still be selected in `config.json`.
 
 The workflow checks pull requests and updates main daily at 09:17 JST, on push,
 or through **Run workflow**. It validates the generated pages before publishing

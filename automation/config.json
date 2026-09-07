@@ -114,6 +114,62 @@
         "en": "Verified a type error in custom matcher result types with TypeScript 5.4 and 5.9.",
         "ja": "`custom matcher`の結果型で出る型エラーをTypeScript 5.4/5.9で確認。"
       }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16409#pullrequestreview-5124351081",
+      "summary": {
+        "en": "Identified a `Symbol.toStringTag` case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.",
+        "ja": "`Symbol.toStringTag`の指定で`pretty-format`が例外を投げ、アサーション失敗時の差分が表示されなくなる問題を指摘し、修正を確認。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16219#pullrequestreview-5060245801",
+      "summary": {
+        "en": "Verified restoration after a throwing `.then` getter and identified `withImplementation` tests that did not exercise the changed source.",
+        "ja": "`.then`の取得で例外が発生した場合の復元処理を検証し、`withImplementation`のテストが変更したソースを実行していないことも指摘。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16191#pullrequestreview-5017422388",
+      "summary": {
+        "en": "Reproduced lost overload types when chaining spy helpers and verified a proposed type-signature change with TypeScript 5.4 and 5.9.",
+        "ja": "スパイのメソッドを連続して呼ぶとオーバーロードの型情報が失われる問題を再現し、型定義の修正案をTypeScript 5.4と5.9で検証。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16372#pullrequestreview-5015687720",
+      "summary": {
+        "en": "Verified coverage-threshold behavior for sharded and unsharded runs, report merging, and documentation of the remaining limitations.",
+        "ja": "テストを分割実行した場合と通常実行した場合のカバレッジ閾値の判定、レポートの結合、制約を説明するドキュメントを検証。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16359#pullrequestreview-4981957277",
+      "summary": {
+        "en": "Reproduced coverage results that depended on project order and missing coverage for projects with no test files.",
+        "ja": "プロジェクトの処理順でカバレッジ結果が変わる問題と、テストファイルがないプロジェクトの集計漏れを再現して指摘。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16379#pullrequestreview-4981956156",
+      "summary": {
+        "en": "Used a native addon to show that excluding all `CustomGC` handles can hide handles that keep Node.js running.",
+        "ja": "ネイティブアドオンで検証し、`CustomGC`を一律に除外するとNode.jsの終了を妨げるハンドルも検出できなくなることを指摘。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16373#pullrequestreview-4971117056",
+      "summary": {
+        "en": "Found that the built-in async resolver could not reach the new optimization path and proposed a correction and regression test.",
+        "ja": "標準の非同期リゾルバーでは新しい最適化処理に到達しないことを確認し、修正方針と回帰テストを提案。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16340#pullrequestreview-4945115474",
+      "summary": {
+        "en": "Reproduced assertion-state collisions between concurrent tests with identical titles and proposed a unique execution identifier.",
+        "ja": "同じタイトルのテストを並行実行するとアサーションの状態が混ざる問題を再現し、実行ごとに一意の識別子を使うよう提案。"
+      }
     }
   ],
   "projects": {

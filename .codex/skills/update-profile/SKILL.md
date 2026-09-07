@@ -15,7 +15,7 @@ description: このプロフィールリポジトリで「更新して」「プ�
 
 リポジトリのルートで`automation/README.md`、`automation/config.json`、`automation/activity.json`と生成ページを確認する。Gitの未コミット変更、HEAD、origin、公開先ブランチと最新SHAを把握し、既存作業を保全して更新の差分を作る。
 
-`node automation/profile.mjs update`で公開情報を取得する。新規項目、APIタイトルがそのまま出ている項目、状態や内容が変わった項目を中心に見直す。変更する紹介文は、参照URLを取得して裏づける。
+`node automation/profile.mjs update`で公開情報を取得する。PR・個人開発・レビューの新規項目、APIタイトルがそのまま出ている項目、状態や内容が変わった項目を中心に見直す。変更する紹介文は、参照URLを取得して裏づける。
 
 - PR：本文・状態と必要な差分や議論から、問題、変更内容、利用者への効果を確認する。
 - レビュー・調査：アンカーが指す本人のコメントを読み、本人の指摘・検証と他者の実装を区別する。
@@ -25,7 +25,7 @@ GitHubには`gh api`や`gh pr view`、他のURLには利用可能なWeb取得手
 
 ## 紹介文を編集する
 
-文面は`automation/config.json`の`pullRequests`、`reviews[].summary`、`projects`へ保存する。`activity.json`は取得データ、READMEと`pages/`は生成物であり、紹介文の編集先にしない。
+文面は`automation/config.json`の`pullRequests`、`reviews[].summary`、`projects`へ保存する。自動追加されたレビューを推敲する場合は、取得したレビューURLと日英のsummaryを`reviews`へ登録する。`activity.json`は取得データ、READMEと`pages/`は生成物であり、紹介文の編集先にしない。
 
 各紹介は、具体的な変更や用途から始める。短い段落を基本とし、必要な背景や条件は意味がつながる文章で添える。技術名は読み手の理解を助ける範囲で使い、タイトルの直訳、抽象的な宣伝、定型の前置きや総括を避ける。魅力は実際の機能や貢献で伝え、性能・評価・採用実績を推測で足さない。
 

@@ -56,11 +56,35 @@ Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to i
 
 ## Reviews and investigations
 
+[Jest \#16409](https://github.com/jestjs/jest/pull/16409#pullrequestreview-5124351081)\
+Identified a `Symbol.toStringTag` case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.
+
+[Jest \#16219](https://github.com/jestjs/jest/pull/16219#pullrequestreview-5060245801)\
+Verified restoration after a throwing `.then` getter and identified `withImplementation` tests that did not exercise the changed source.
+
 [Jest \#16345](https://github.com/jestjs/jest/pull/16345#pullrequestreview-5056029310)\
 Found an insertion-order bug in overlapping table-key interpolation and verified the fix and regression tests.
 
 [Jest \#16374](https://github.com/jestjs/jest/pull/16374#pullrequestreview-5047656739)\
 Verified snapshot paths appear only in external snapshot failures, in both Circus and Jasmine.
 
+[Jest \#16191](https://github.com/jestjs/jest/pull/16191#pullrequestreview-5017422388)\
+Reproduced lost overload types when chaining spy helpers and verified a proposed type-signature change with TypeScript 5.4 and 5.9.
+
 [Jest \#16380](https://github.com/jestjs/jest/pull/16380#pullrequestreview-5017415062)\
 Verified a type error in custom matcher result types with TypeScript 5.4 and 5.9.
+
+[Jest \#16372](https://github.com/jestjs/jest/pull/16372#pullrequestreview-5015687720)\
+Verified coverage-threshold behavior for sharded and unsharded runs, report merging, and documentation of the remaining limitations.
+
+[Jest \#16359](https://github.com/jestjs/jest/pull/16359#pullrequestreview-4981957277)\
+Reproduced coverage results that depended on project order and missing coverage for projects with no test files.
+
+[Jest \#16379](https://github.com/jestjs/jest/pull/16379#pullrequestreview-4981956156)\
+Used a native addon to show that excluding all `CustomGC` handles can hide handles that keep Node.js running.
+
+[Jest \#16373](https://github.com/jestjs/jest/pull/16373#pullrequestreview-4971117056)\
+Found that the built-in async resolver could not reach the new optimization path and proposed a correction and regression test.
+
+[Jest \#16340](https://github.com/jestjs/jest/pull/16340#pullrequestreview-4945115474)\
+Reproduced assertion-state collisions between concurrent tests with identical titles and proposed a unique execution identifier.

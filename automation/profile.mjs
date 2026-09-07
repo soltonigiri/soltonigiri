@@ -77,10 +77,12 @@ export function validateSnapshot(d, c) {
     if (p.homepage) safeUrl(p.homepage);
   }
   const expectedReviews = new Set(c.reviews.map(r => r.url));
-  assert(expectedReviews.size === d.reviews.length, 'Selected reviews are incomplete');
+  assert([...expectedReviews].every(url => d.reviews.some(r => r.url === url)), 'Selected reviews are incomplete');
   for (const r of d.reviews) {
     const parsed = parseContributionUrl(r.url);
-    assert(expectedReviews.has(r.url) && parsed.repo === r.repo && parsed.number === r.number && Number.isFinite(Date.parse(r.submittedAt)), 'Invalid selected review');
+    assert(parsed.fragment && parsed.repo === r.repo && parsed.number === r.number && Number.isFinite(Date.parse(r.submittedAt)), 'Invalid review');
+    assert(parsed.repo.split('/')[0].toLowerCase() !== c.user.toLowerCase(), 'Own repository in reviews');
+    assert(expectedReviews.has(r.url) || (parsed.kind === 'pull' && parsed.fragment === 'pullrequestreview-' && typeof r.title === 'string'), 'Missing review title');
   }
   return d;
 }
@@ -125,7 +127,7 @@ ${c.pullRequests[p.url]?.[lang] ?? text(p.title)}`;
     ]) if (subset.length) contributions.push(`## ${label}`, [...subset].sort(newest(date)).map(row).join('\n\n'));
     const reviews = [...d.reviews].sort(newest(r => r.submittedAt));
     if (reviews.length) contributions.push(`## ${l.reviews}`, reviews.map(r => `${link(`${projectName(r.repo)} #${r.number}`, r.url)}\\
-${c.reviews.find(item => item.url === r.url).summary[lang]}`).join('\n\n'));
+${c.reviews.find(item => item.url === r.url)?.summary[lang] ?? text(r.title)}`).join('\n\n'));
     const closed = d.pullRequests.filter(p => p.state === 'closed' && !p.mergedAt).sort(newest(p => p.closedAt));
     if (closed.length) contributions.push(`<details>\n<summary>${l.closed} (${closed.length})</summary>\n\n${closed.map(row).join('\n\n')}\n\n</details>`);
     pages[fileFor('contributions', lang)] = `${contributions.join('\n\n')}\n`;
@@ -171,13 +173,13 @@ export function createClient({ token, fetchImpl = fetch, sleep = ms => new Promi
   };
 }
 
-export async function searchPullRequests(api, user, now) {
+export async function searchPullRequests(api, user, now, { reviewed = false } = {}) {
   const first = Date.parse('2008-01-01T00:00:00Z') / 1000;
   const last = Math.floor(Date.parse(now) / 1000);
   assert(Number.isFinite(last) && last >= first, 'Invalid search date');
   const iso = seconds => new Date(seconds * 1000).toISOString().replace('.000Z', 'Z');
   async function search(start, end) {
-    const query = `is:pr is:public author:${user} -user:${user} created:${iso(start)}..${iso(end)}`;
+    const query = `is:pr is:public ${reviewed ? `reviewed-by:${user} -author:${user}` : `author:${user}`} -user:${user} created:${iso(start)}..${iso(end)}`;
     const prefix = `/search/issues?q=${encodeURIComponent(query)}&per_page=100&sort=created&order=asc`;
     const firstPage = await api(`${prefix}&page=1`);
     assert(firstPage.incomplete_results === false && Array.isArray(firstPage.items) && Number.isInteger(firstPage.total_count) && firstPage.total_count >= 0, 'Incomplete PR search');
@@ -247,6 +249,32 @@ export async function collect(c, { api = createClient({ token: process.env.GITHU
     const review = await api(endpoint);
     assert(review.user?.login.toLowerCase() === c.user.toLowerCase() && review.html_url === selected.url, 'Selected contribution author or URL mismatch');
     reviews.push({ repo: p.repo, number: p.number, url: selected.url, submittedAt: review.submitted_at ?? review.created_at });
+  }
+  // Configured contributions retain their source links and editorial copy.
+  const selectedPulls = new Set(c.reviews.filter(r => parseContributionUrl(r.url).kind === 'pull').map(r => r.url.split('#')[0]));
+  for (const item of await searchPullRequests(api, c.user, now, { reviewed: true })) {
+    const identity = parseContributionUrl(item.html_url);
+    assert(identity.kind === 'pull' && !identity.fragment && identity.repo.split('/')[0].toLowerCase() !== c.user.toLowerCase(), 'Unexpected reviewed PR');
+    if (selectedPulls.has(item.html_url)) continue;
+    const p = await api(`/repos/${identity.repo}/pulls/${identity.number}`);
+    assert(p.html_url === item.html_url && p.base?.repo?.private === false && p.user?.login && p.user.login.toLowerCase() !== c.user.toLowerCase(), 'Unexpected reviewed PR visibility or author');
+    const own = [];
+    const seen = new Set();
+    for (let page = 1; ; page++) {
+      const items = await api(`/repos/${identity.repo}/pulls/${identity.number}/reviews?per_page=100&page=${page}`);
+      assert(Array.isArray(items), 'Invalid review list');
+      for (const review of items) {
+        assert(!seen.has(review.id), 'Review listing changed during pagination');
+        seen.add(review.id);
+        if (review.user?.login.toLowerCase() !== c.user.toLowerCase() || review.state === 'PENDING' || !review.submitted_at) continue;
+        const source = parseContributionUrl(review.html_url);
+        assert(source.repo === identity.repo && source.number === identity.number && source.kind === 'pull' && source.fragment === 'pullrequestreview-', 'Review URL mismatch');
+        own.push({ repo: identity.repo, number: identity.number, url: review.html_url, submittedAt: review.submitted_at, title: p.title });
+      }
+      if (items.length < 100) break;
+    }
+    assert(own.length, 'Reviewed PR has no submitted review by profile owner');
+    reviews.push(own.sort(newest(r => r.submittedAt))[0]);
   }
   const result = { version: 1, user: c.user, projects: projects.sort((a, b) => compare(a.repo, b.repo)), pullRequests: pullRequests.sort((a, b) => compare(a.url, b.url)), reviews: reviews.sort((a, b) => compare(a.url, b.url)) };
   return result;

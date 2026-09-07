@@ -38,6 +38,7 @@ function apiFixture() {
       { full_name: 'alice/private', owner: { login: 'alice' }, fork: false, private: true, archived: false },
       { full_name: 'alice/alice', owner: { login: 'alice' }, fork: false, private: false, archived: false },
     ];
+    if (path.startsWith('/search/issues') && decodeURIComponent(path).includes('reviewed-by:')) return { total_count: 0, incomplete_results: false, items: [] };
     if (path.startsWith('/search/issues')) return { total_count: 1, incomplete_results: false, items: [{ html_url: p.url }] };
     if (path === '/repos/example/tool/pulls/1') return { number: 1, html_url: p.url, title: p.title, state: p.state, draft: p.draft, user: { login: 'alice' }, base: { repo: { private: false } }, created_at: p.createdAt, merged_at: p.mergedAt, closed_at: p.closedAt };
     if (path === '/repos/example/tool') return { private: false };
@@ -224,6 +225,71 @@ test('private or foreign-authored PRs and mismatched reviews abort collection', 
       return result;
     };
     await assert.rejects(collect(config, { api: altered, now: NOW }), /Unexpected PR|mismatch/);
+  }
+});
+
+function reviewFixture() {
+  const base = apiFixture();
+  const url = 'https://github.com/example/tool/pull/3';
+  const review = { id: 20, user: { login: 'alice' }, state: 'COMMENTED', submitted_at: NOW, html_url: `${url}#pullrequestreview-20`, body: '' };
+  const api = async path => {
+    if (path.startsWith('/search/issues') && decodeURIComponent(path).includes('reviewed-by:')) {
+      assert.match(decodeURIComponent(path), /reviewed-by:alice -author:alice -user:alice/);
+      return { total_count: 2, incomplete_results: false, items: [{ html_url: base.config.reviews[0].url.split('#')[0] }, { html_url: url }] };
+    }
+    if (path === '/repos/example/tool/pulls/3') return { html_url: url, title: '<script>Review target</script>', user: { login: 'bob' }, base: { repo: { private: false } } };
+    if (path.startsWith('/repos/example/tool/pulls/3/reviews?')) return [
+      { ...review, id: 21, user: { login: 'bob' } },
+      { ...review, id: 22, state: 'PENDING', submitted_at: null },
+      { ...review, id: 19, html_url: `${url}#pullrequestreview-19`, submitted_at: '2026-08-01T00:00:00Z' },
+      review,
+    ];
+    return base.api(path);
+  };
+  return { ...base, api, review };
+}
+
+test('automatic reviews keep one latest submitted review per PR and preserve configured copy', async () => {
+  const { config, api, review } = reviewFixture();
+  const data = await collect(config, { api, now: NOW });
+  validateSnapshot(data, config);
+  assert.equal(data.reviews.length, 2);
+  assert.equal(data.reviews.find(r => r.number === 3).url, review.html_url);
+  assert.equal(data.reviews.find(r => r.number === 2).url, config.reviews[0].url);
+  const pages = renderPages(config, data);
+  for (const lang of ['en', 'ja']) {
+    const page = pages[`pages/contributions${lang === 'ja' ? '_ja' : ''}.md`];
+    assert.ok(page.includes(config.reviews[0].summary[lang]));
+    assert.match(page, /&lt;script&gt;Review target/);
+    assert.doesNotMatch(page, /<script>/);
+    assert.equal(page.split(review.html_url).length - 1, 1);
+  }
+});
+
+test('review pagination finds the owner on later pages and rejects duplicate results', async () => {
+  const { config, api, review } = reviewFixture();
+  const first = Array.from({ length: 100 }, (_, i) => ({ ...review, id: 100 + i, user: { login: 'bob' } }));
+  const paginated = async path => path.includes('/pulls/3/reviews?') ? path.endsWith('page=1') ? first : [review] : api(path);
+  const data = await collect(config, { api: paginated, now: NOW });
+  assert.equal(data.reviews.find(r => r.number === 3).url, review.html_url);
+  await assert.rejects(collect(config, { now: NOW, api: path => path.includes('/pulls/3/reviews?') ? Promise.resolve(first) : api(path) }), /Review listing changed/);
+});
+
+test('automatic review collection rejects private or own-authored PRs and mismatched review sources', async () => {
+  for (const variant of ['private', 'author', 'url', 'missing']) {
+    const { config, api, review } = reviewFixture();
+    await assert.rejects(collect(config, { now: NOW, api: async path => {
+      const result = await api(path);
+      if (path.endsWith('/pulls/3')) {
+        if (variant === 'private') result.base.repo.private = true;
+        if (variant === 'author') result.user.login = 'alice';
+      }
+      if (path.includes('/pulls/3/reviews?')) {
+        if (variant === 'url') return [{ ...review, html_url: review.html_url.replace('/pull/3', '/pull/4') }];
+        if (variant === 'missing') return [];
+      }
+      return result;
+    } }), /Unexpected reviewed PR|Review URL mismatch|no submitted review/);
   }
 });
 

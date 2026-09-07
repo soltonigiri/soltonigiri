@@ -56,11 +56,35 @@ worker logへ`console.trace()`のstackを追加し、Inspectorとtailの既存�
 
 ## レビュー・調査
 
+[Jest \#16409](https://github.com/jestjs/jest/pull/16409#pullrequestreview-5124351081)\
+`Symbol.toStringTag`の指定で`pretty-format`が例外を投げ、アサーション失敗時の差分が表示されなくなる問題を指摘し、修正を確認。
+
+[Jest \#16219](https://github.com/jestjs/jest/pull/16219#pullrequestreview-5060245801)\
+`.then`の取得で例外が発生した場合の復元処理を検証し、`withImplementation`のテストが変更したソースを実行していないことも指摘。
+
 [Jest \#16345](https://github.com/jestjs/jest/pull/16345#pullrequestreview-5056029310)\
 prefixが重なるtable keyの補間に挿入順依存があることを指摘し、修正と回帰テストを確認。
 
 [Jest \#16374](https://github.com/jestjs/jest/pull/16374#pullrequestreview-5047656739)\
 外部スナップショットの失敗時だけパスを表示する変更を、CircusとJasmineで検証。
 
+[Jest \#16191](https://github.com/jestjs/jest/pull/16191#pullrequestreview-5017422388)\
+スパイのメソッドを連続して呼ぶとオーバーロードの型情報が失われる問題を再現し、型定義の修正案をTypeScript 5.4と5.9で検証。
+
 [Jest \#16380](https://github.com/jestjs/jest/pull/16380#pullrequestreview-5017415062)\
 `custom matcher`の結果型で出る型エラーをTypeScript 5.4/5.9で確認。
+
+[Jest \#16372](https://github.com/jestjs/jest/pull/16372#pullrequestreview-5015687720)\
+テストを分割実行した場合と通常実行した場合のカバレッジ閾値の判定、レポートの結合、制約を説明するドキュメントを検証。
+
+[Jest \#16359](https://github.com/jestjs/jest/pull/16359#pullrequestreview-4981957277)\
+プロジェクトの処理順でカバレッジ結果が変わる問題と、テストファイルがないプロジェクトの集計漏れを再現して指摘。
+
+[Jest \#16379](https://github.com/jestjs/jest/pull/16379#pullrequestreview-4981956156)\
+ネイティブアドオンで検証し、`CustomGC`を一律に除外するとNode.jsの終了を妨げるハンドルも検出できなくなることを指摘。
+
+[Jest \#16373](https://github.com/jestjs/jest/pull/16373#pullrequestreview-4971117056)\
+標準の非同期リゾルバーでは新しい最適化処理に到達しないことを確認し、修正方針と回帰テストを提案。
+
+[Jest \#16340](https://github.com/jestjs/jest/pull/16340#pullrequestreview-4945115474)\
+同じタイトルのテストを並行実行するとアサーションの状態が混ざる問題を再現し、実行ごとに一意の識別子を使うよう提案。
