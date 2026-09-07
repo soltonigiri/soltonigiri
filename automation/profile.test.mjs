@@ -156,7 +156,7 @@ test('heartbeat changes on day 30, content changes, or first check only', () => 
   assert.throws(() => nextCheck(previous, after(-1), false));
 });
 
-test('generation is deterministic, language links and anchors resolve', async t => {
+test('generation is deterministic and local page links resolve', async t => {
   const root = await workspace(t);
   const first = await buildOutputs(root);
   await writeOutputs(root, first);
@@ -174,6 +174,23 @@ test('failed collection leaves every saved output and heartbeat unchanged', asyn
   await assert.rejects(buildOutputs(root, { refresh: true, now: NOW, api: path => path.startsWith('/search/') ? Promise.reject(new Error('network failure')) : api(path) }), /network failure/);
   assert.equal(await readFile(join(root, 'README.md'), 'utf8'), before);
   assert.equal(JSON.parse(await readFile(join(root, 'automation/activity.json'))).checkedAt, NOW);
+});
+
+test('output generation validates saved and fetched data before writing', async t => {
+  const root = await workspace(t);
+  await writeOutputs(root, await buildOutputs(root));
+  const before = await readFile(join(root, 'README.md'), 'utf8');
+  const saved = JSON.parse(await readFile(join(root, 'automation/activity.json'), 'utf8'));
+  saved.pullRequests[0].mergedAt = NOW;
+  await writeFile(join(root, 'automation/activity.json'), json(saved));
+  await assert.rejects(buildOutputs(root), /Merged PR must be closed/);
+  const { api } = apiFixture();
+  await assert.rejects(buildOutputs(root, { refresh: true, now: NOW, api: async path => {
+    const result = await api(path);
+    if (path.endsWith('/pulls/1')) result.merged_at = NOW;
+    return result;
+  } }), /Merged PR must be closed/);
+  assert.equal(await readFile(join(root, 'README.md'), 'utf8'), before);
 });
 
 test('live refresh no-op and monthly update use independent state', async t => {

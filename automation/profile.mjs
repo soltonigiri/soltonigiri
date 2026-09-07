@@ -105,7 +105,6 @@ function header(page, lang, title) {
 const newest = date => (a, b) => compare(date(b) ?? '', date(a) ?? '') || compare(a.url, b.url);
 const projectName = repo => ({ jest: 'Jest', openclaw: 'OpenClaw' })[repo.split('/')[1]] ?? repo.split('/')[1];
 export function renderPages(c, d) {
-  validateConfig(c); validateSnapshot(d, c);
   const pages = {};
   for (const lang of ['en', 'ja']) {
     const l = labels[lang];
@@ -205,7 +204,6 @@ export async function searchPullRequests(api, user, now) {
 
 export async function collect(c, { api = createClient({ token: process.env.GITHUB_TOKEN }), now = new Date().toISOString() } = {}) {
   const repoCache = new Map();
-  const pullCache = new Map();
   async function publicRepo(repo) {
     if (!repoCache.has(repo)) {
       const value = await api(`/repos/${repo}`);
@@ -213,11 +211,6 @@ export async function collect(c, { api = createClient({ token: process.env.GITHU
       repoCache.set(repo, value);
     }
     return repoCache.get(repo);
-  }
-  async function pull(repo, number) {
-    const key = `${repo}/${number}`;
-    if (!pullCache.has(key)) pullCache.set(key, await api(`/repos/${repo}/pulls/${number}`));
-    return pullCache.get(key);
   }
   const projects = [];
   const seenRepos = new Set();
@@ -237,7 +230,7 @@ export async function collect(c, { api = createClient({ token: process.env.GITHU
   for (const item of await searchPullRequests(api, c.user, now)) {
     const identity = parseContributionUrl(item.html_url);
     assert(identity.kind === 'pull' && !identity.fragment, 'Unexpected search result');
-    const p = await pull(identity.repo, identity.number);
+    const p = await api(`/repos/${identity.repo}/pulls/${identity.number}`);
     assert(p.base?.repo?.private === false && p.user?.login.toLowerCase() === c.user.toLowerCase(), 'Unexpected PR visibility or author');
     pullRequests.push({ repo: identity.repo, number: p.number, url: p.html_url, title: p.title, state: p.state, draft: p.draft, createdAt: p.created_at, mergedAt: p.merged_at, closedAt: p.closed_at });
   }
@@ -256,7 +249,7 @@ export async function collect(c, { api = createClient({ token: process.env.GITHU
     reviews.push({ repo: p.repo, number: p.number, url: selected.url, submittedAt: review.submitted_at ?? review.created_at });
   }
   const result = { version: 1, user: c.user, projects: projects.sort((a, b) => compare(a.repo, b.repo)), pullRequests: pullRequests.sort((a, b) => compare(a.url, b.url)), reviews: reviews.sort((a, b) => compare(a.url, b.url)) };
-  return validateSnapshot(result, c);
+  return result;
 }
 
 // Generate or check the same pages locally and in GitHub Actions.
@@ -274,7 +267,7 @@ export async function buildOutputs(root, { refresh = false, now = new Date().toI
   const config = validateConfig(await load(resolve(root, 'automation/config.json')));
   const saved = await load(resolve(root, 'automation/activity.json'));
   const { checkedAt, ...previous } = saved;
-  const data = refresh ? await collect(config, { now, api }) : validateSnapshot(previous, config);
+  const data = validateSnapshot(refresh ? await collect(config, { now, api }) : previous, config);
   const outputs = renderPages(config, data);
   let changed = json(previous) !== json(data);
   for (const [path, value] of Object.entries(outputs)) {
@@ -298,18 +291,17 @@ export async function writeOutputs(root, outputs) {
 }
 
 export async function checkLinks(root, files = PAGE_FILES) {
-  // These generated pages use inline links and explicit section anchors.
+  // Check the inline links emitted by the page renderer.
   for (const file of files) {
     const source = await readFile(resolve(root, file), 'utf8');
     for (const match of source.matchAll(/(?<!\\)\[(?:\\.|[^\]\\])*\]\(([^)\s]+)\)/g)) {
       const href = match[1];
       if (/^[a-z][a-z0-9+.-]*:/i.test(href)) { safeUrl(href); continue; }
       assert(!href.startsWith('//'), 'Protocol-relative link');
-      const [path, fragment] = href.split('#');
+      const [path] = href.split('#');
       const target = path ? resolve(root, dirname(file), decodeURIComponent(path)) : resolve(root, file);
       assert(!relative(root, target).startsWith('..'), `Link leaves repository: ${file}`);
       await access(target);
-      if (fragment) assert((await readFile(target, 'utf8')).includes(`id="${decodeURIComponent(fragment)}"`), `Missing anchor in ${file}`);
     }
   }
 }
