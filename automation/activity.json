@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "user": "soltonigiri",
+  "projects": [
+    {
+      "repo": "soltonigiri/2048-radio",
+      "description": "Autoplaying 2048 with jazz, beat-synced moves, and hand claps.",
+      "homepage": null,
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/isorropia-engine",
+      "description": "Explainable SCP anomaly pairing for containment cycles, breaches, and double features",
+      "homepage": null,
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/profile-site",
+      "description": "Bilingual open-source profile site built with HTML, CSS, JavaScript, and Cloudflare Pages.",
+      "homepage": "https://soltonigiri.pages.dev/",
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/RonjaLint",
+      "description": null,
+      "homepage": null,
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/scp-mcp",
+      "description": "SCP Wikiのページを検索し、出典付きで取得できるMCPサーバー",
+      "homepage": null,
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/work-request-triage",
+      "description": "仕事の募集文を読み込み、受ける候補かどうかと、注意点や確認事項を出力するオフラインCLI",
+      "homepage": null,
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/yomei-exe",
+      "description": "日本の公的統計をもとに、統計上の残り時間と自由時間を表示するブラウザアプリです。",
+      "homepage": "https://yomei-exe.pages.dev/",
+      "archived": false
+    },
+    {
+      "repo": "soltonigiri/youtube-markdown-archiver",
+      "description": "Local CLI pipeline for turning YouTube metadata, subtitles, ASR, and OCR into Markdown archives",
+      "homepage": null,
+      "archived": false
+    }
+  ],
+  "pullRequests": [
+    {
+      "repo": "activist-org/activist",
+      "number": 2335,
+      "url": "https://github.com/activist-org/activist/pull/2335",
+      "title": "fix(frontend): make SidebarLeft icon sizes consistent",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-08T23:16:43Z",
+      "mergedAt": "2026-08-09T11:36:27Z",
+      "closedAt": "2026-08-09T11:36:27Z"
+    },
+    {
+      "repo": "angular/components",
+      "number": 33670,
+      "url": "https://github.com/angular/components/pull/33670",
+      "title": "fix(cdk/table): update rows when row definitions change",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-13T06:03:01Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "cloudflare/workerd",
+      "number": 7174,
+      "url": "https://github.com/cloudflare/workerd/pull/7174",
+      "title": "Add console.trace() output to worker logs",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-28T21:56:14Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "dheerajjha/mcp-migrate",
+      "number": 222,
+      "url": "https://github.com/dheerajjha/mcp-migrate/pull/222",
+      "title": "Show suppression counts in the registry",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-08T00:59:14Z",
+      "mergedAt": "2026-08-08T07:35:01Z",
+      "closedAt": "2026-08-08T07:35:01Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16322,
+      "url": "https://github.com/jestjs/jest/pull/16322",
+      "title": "[jest-circus] Add describe-level retries",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-11T05:42:36Z",
+      "mergedAt": "2026-08-18T08:13:27Z",
+      "closedAt": "2026-08-18T08:13:28Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16342,
+      "url": "https://github.com/jestjs/jest/pull/16342",
+      "title": "[jest-circus] Clear the current test after skipped and todo tests",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-15T10:08:16Z",
+      "mergedAt": "2026-08-16T07:40:29Z",
+      "closedAt": "2026-08-16T07:40:29Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16343,
+      "url": "https://github.com/jestjs/jest/pull/16343",
+      "title": "[jest-circus] Isolate done callback state between invocations",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-15T10:36:23Z",
+      "mergedAt": "2026-08-16T07:41:53Z",
+      "closedAt": "2026-08-16T07:41:53Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16344,
+      "url": "https://github.com/jestjs/jest/pull/16344",
+      "title": "[jest-circus, jest-snapshot] Preserve unrelated inline snapshots across test retries",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-15T11:03:47Z",
+      "mergedAt": "2026-08-16T16:18:09Z",
+      "closedAt": "2026-08-16T16:18:09Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16402,
+      "url": "https://github.com/jestjs/jest/pull/16402",
+      "title": "feat(jest-snapshot): support ESM snapshotResolver and snapshotSerializers",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-28T09:37:20Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16427,
+      "url": "https://github.com/jestjs/jest/pull/16427",
+      "title": "[docs] Clarify mocking separately installed copies of a module",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-09-05T10:18:29Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "langchain-ai/langchainjs",
+      "number": 11329,
+      "url": "https://github.com/langchain-ai/langchainjs/pull/11329",
+      "title": "fix(aws): honor Bedrock Converse retry configuration",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-10T11:40:51Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "open-telemetry/opentelemetry-js-contrib",
+      "number": 3707,
+      "url": "https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3707",
+      "title": "fix(instrumentation-ioredis): prevent duplicate span completion",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-28T21:55:41Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "open-telemetry/opentelemetry-js-contrib",
+      "number": 3710,
+      "url": "https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710",
+      "title": "fix(instrumentation-aws-sdk): omit empty propagation attributes",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-29T04:56:29Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "openclaw/openclaw",
+      "number": 120658,
+      "url": "https://github.com/openclaw/openclaw/pull/120658",
+      "title": "fix(active-memory): keep recall errors out of prompt context",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-08T18:16:56Z",
+      "mergedAt": "2026-08-28T16:26:40Z",
+      "closedAt": "2026-08-28T16:26:40Z"
+    },
+    {
+      "repo": "oxc-project/oxc",
+      "number": 26160,
+      "url": "https://github.com/oxc-project/oxc/pull/26160",
+      "title": "fix(linter/unicorn/no-useless-spread): preserve spreads for unknown slice receivers",
+      "state": "open",
+      "draft": false,
+      "createdAt": "2026-08-29T04:39:05Z",
+      "mergedAt": null,
+      "closedAt": null
+    },
+    {
+      "repo": "pnpm/pnpm",
+      "number": 13885,
+      "url": "https://github.com/pnpm/pnpm/pull/13885",
+      "title": "fix(modules-yaml): read manifests with long dependency paths",
+      "state": "closed",
+      "draft": false,
+      "createdAt": "2026-08-13T05:57:12Z",
+      "mergedAt": "2026-08-21T12:59:19Z",
+      "closedAt": "2026-08-21T12:59:20Z"
+    }
+  ],
+  "reviews": [
+    {
+      "repo": "jestjs/jest",
+      "number": 16345,
+      "url": "https://github.com/jestjs/jest/pull/16345#pullrequestreview-5056029310",
+      "submittedAt": "2026-08-29T00:26:32Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16374,
+      "url": "https://github.com/jestjs/jest/pull/16374#pullrequestreview-5047656739",
+      "submittedAt": "2026-08-28T03:21:34Z"
+    },
+    {
+      "repo": "jestjs/jest",
+      "number": 16380,
+      "url": "https://github.com/jestjs/jest/pull/16380#pullrequestreview-5017415062",
+      "submittedAt": "2026-08-25T09:45:15Z"
+    }
+  ],
+  "checkedAt": "2026-09-07T15:23:12.818Z"
+}

@@ -1,0 +1,63 @@
+name: Profile
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 0 * * *' # 09:17 Asia/Tokyo
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: profile-${{ github.event.pull_request.number || 'main' }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - run: |
+          node --test automation/profile.test.mjs
+          node automation/profile.mjs check
+
+  update:
+    if: github.event_name != 'pull_request' && github.repository == 'soltonigiri/soltonigiri' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - run: |
+          node --test automation/profile.test.mjs
+          node automation/profile.mjs update
+          node automation/profile.mjs check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Publish generated pages
+        run: |
+          files=(README.md README_ja.md pages/contributions.md pages/contributions_ja.md pages/projects.md pages/projects_ja.md automation/activity.json)
+          if git diff --quiet -- "${files[@]}"; then
+            printf '%s\n' 'No content changes.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git add -- "${files[@]}"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Update public profile'
+          git push origin HEAD:main
+          printf '%s\n' 'Updated public profile.' >> "$GITHUB_STEP_SUMMARY"

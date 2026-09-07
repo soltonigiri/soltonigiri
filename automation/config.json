@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "user": "soltonigiri",
+  "intro": {
+    "en": "I contribute to open source and build web apps and CLI tools using TypeScript and Python.",
+    "ja": "TypeScriptとPythonを使い、OSSへのコントリビュートやWebアプリ・CLIの開発をしています。"
+  },
+  "availability": {
+    "en": "Open to contract opportunities.",
+    "ja": "業務委託案件を募集しています。"
+  },
+  "links": [
+    {
+      "emoji": "🌐",
+      "label": {
+        "en": "Portfolio",
+        "ja": "ポートフォリオ"
+      },
+      "url": "https://soltonigiri.pages.dev/"
+    },
+    {
+      "emoji": "💬",
+      "label": {
+        "en": "X / Contact",
+        "ja": "X / 連絡先"
+      },
+      "url": "https://x.com/solt_onigiri_"
+    }
+  ],
+  "pullRequests": {
+    "https://github.com/openclaw/openclaw/pull/120658": {
+      "en": "Reproduced and fixed an issue where Active Memory `recall error` messages leaked into prompts.",
+      "ja": "Active Memoryの`recall error`がpromptに混ざる問題を再現し、修正。"
+    },
+    "https://github.com/pnpm/pnpm/pull/13885": {
+      "en": "Updated the Rust implementation to support reading `.modules.yaml` files containing long dependency paths.",
+      "ja": "長い依存パスを含む`.modules.yaml`をRust側でも読めるよう修正。"
+    },
+    "https://github.com/jestjs/jest/pull/16322": {
+      "en": "Added support for rerunning tests at the `describe` level with `jest.retryTimes()`.",
+      "ja": "`jest.retryTimes()`に`describe`単位の再実行を追加。"
+    },
+    "https://github.com/jestjs/jest/pull/16344": {
+      "en": "Fixed an issue where retries also deleted inline snapshots outside the retried test.",
+      "ja": "再試行時に、対象外のinline snapshotまで削除される問題を修正。"
+    },
+    "https://github.com/jestjs/jest/pull/16343": {
+      "en": "Fixed an issue where a late `done` callback affected subsequent tests.",
+      "ja": "遅れて呼ばれた`done` callbackが後続テストへ影響する問題を修正。"
+    },
+    "https://github.com/jestjs/jest/pull/16342": {
+      "en": "Fixed an issue where `currentlyRunningTest` remained set after skipped or todo tests.",
+      "ja": "skipまたはtodoの後も`currentlyRunningTest`が残る問題を修正。"
+    },
+    "https://github.com/activist-org/activist/pull/2335": {
+      "en": "Standardized sidebar icon sizes and added regression tests.",
+      "ja": "サイドバーのアイコンサイズを統一し、回帰テストを追加。"
+    },
+    "https://github.com/dheerajjha/mcp-migrate/pull/222": {
+      "en": "Displayed the number of hidden items in the list and added validation and tests for invalid values.",
+      "ja": "非表示項目数を一覧へ表示。不正値の検証とテストも追加。"
+    },
+    "https://github.com/jestjs/jest/pull/16402": {
+      "en": "Added ESM support for `snapshotResolver` and `snapshotSerializers`.",
+      "ja": "`snapshotResolver`と`snapshotSerializers`のESM対応を追加。"
+    },
+    "https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3707": {
+      "en": "Prevented duplicate span completion when an `ioredis` callback fires more than once.",
+      "ja": "`ioredis` callbackが複数回呼ばれてもspanを重複終了しないよう修正。"
+    },
+    "https://github.com/cloudflare/workerd/pull/7174": {
+      "en": "Added `console.trace()` stack output to worker logs while preserving existing Inspector and tail behavior.",
+      "ja": "worker logへ`console.trace()`のstackを追加し、Inspectorとtailの既存動作を維持。"
+    },
+    "https://github.com/jestjs/jest/pull/16427": {
+      "en": "Documented why mocks can miss separately installed copies of a dependency and how to work around it.",
+      "ja": "同じ依存モジュールが別々にインストールされているとモックが適用されない理由と、回避方法をドキュメントに追加。"
+    },
+    "https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710": {
+      "en": "Excluded empty context propagation attributes that cause SQS and SNS to reject messages, and corrected handling of the 10-attribute limit.",
+      "ja": "SQS・SNSがメッセージを拒否する原因となる空のコンテキスト伝播属性を除外し、属性数の上限10件の判定も修正。"
+    },
+    "https://github.com/oxc-project/oxc/pull/26160": {
+      "en": "Fixed false positives in `no-useless-spread` so spreads around `slice()` results are preserved when the receiver type is unknown.",
+      "ja": "`no-useless-spread`の誤検出を修正し、呼び出し元の型が不明な`slice()`の結果ではスプレッド構文を維持。"
+    },
+    "https://github.com/angular/components/pull/33670": {
+      "en": "Fixed stale row templates in `CdkTable` when `trackBy` preserves row identity but the row definition changes.",
+      "ja": "`CdkTable`で`trackBy`による行の識別が変わらなくても、行定義が変わればテンプレートを更新するよう修正。"
+    },
+    "https://github.com/langchain-ai/langchainjs/pull/11329": {
+      "en": "Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to initialization to avoid duplicate output.",
+      "ja": "`ChatBedrockConverse`に再試行設定を反映し、ストリーミングでは出力の重複を避けるため再試行を初期化時に限定。"
+    }
+  },
+  "reviews": [
+    {
+      "url": "https://github.com/jestjs/jest/pull/16374#pullrequestreview-5047656739",
+      "summary": {
+        "en": "Verified snapshot paths appear only in external snapshot failures, in both Circus and Jasmine.",
+        "ja": "外部スナップショットの失敗時だけパスを表示する変更を、CircusとJasmineで検証。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16345#pullrequestreview-5056029310",
+      "summary": {
+        "en": "Found an insertion-order bug in overlapping table-key interpolation and verified the fix and regression tests.",
+        "ja": "prefixが重なるtable keyの補間に挿入順依存があることを指摘し、修正と回帰テストを確認。"
+      }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16380#pullrequestreview-5017415062",
+      "summary": {
+        "en": "Verified a type error in custom matcher result types with TypeScript 5.4 and 5.9.",
+        "ja": "`custom matcher`の結果型で出る型エラーをTypeScript 5.4/5.9で確認。"
+      }
+    }
+  ],
+  "projects": {
+    "soltonigiri/2048-radio": {
+      "demo": "https://2048-radio.pages.dev/",
+      "summary": {
+        "en": "An autoplaying 2048 web app with jazz and hand claps.",
+        "ja": "AIが2048を自動プレイし、ジャズに合わせてタイルが動く音楽付きWebアプリ。"
+      },
+      "name": "2048 Radio",
+      "demoLabel": {
+        "en": "Play",
+        "ja": "遊ぶ"
+      }
+    },
+    "soltonigiri/yomei-exe": {
+      "summary": {
+        "en": "Estimates remaining lifetime and free time based on official Japanese statistics. All inputs are processed locally.",
+        "ja": "日本の公的統計から、統計上の残り時間と自由時間を計算。入力内容は端末内だけで処理。"
+      }
+    },
+    "soltonigiri/profile-site": {
+      "summary": {
+        "en": "A bilingual profile site built with HTML, CSS, JavaScript, and Cloudflare Pages.",
+        "ja": "HTML・CSS・JavaScriptで作った、Cloudflare Pages上の日英プロフィールサイト。"
+      }
+    },
+    "soltonigiri/RonjaLint": {
+      "summary": {
+        "en": "A textlint rule and agent integrations for using role-theory phrasing in Japanese AI chats.",
+        "ja": "AIの日本語チャットに「役割論理」のロジカル語法を取り入れるtextlintルールとエージェント連携ツール。"
+      }
+    },
+    "soltonigiri/scp-mcp": {
+      "summary": {
+        "en": "A read-only MCP server for searching the SCP Wiki and retrieving source, author, and licensing information.",
+        "ja": "SCP Wikiを検索し、出典、作者、ライセンス情報を取得する読み取り専用MCPサーバー。"
+      }
+    },
+    "soltonigiri/isorropia-engine": {
+      "summary": {
+        "en": "A CLI and TUI for finding SCP anomaly pairings with explanations.",
+        "ja": "SCPの異常存在の組み合わせを、理由とともに提示するCLI・TUI。"
+      }
+    },
+    "soltonigiri/youtube-markdown-archiver": {
+      "summary": {
+        "en": "A local CLI that archives video metadata, subtitles, speech-to-text transcripts, and text extracted from images as Markdown.",
+        "ja": "動画の情報、字幕、音声認識、画像内の文字をMarkdownで保存するローカルCLI。"
+      }
+    },
+    "soltonigiri/work-request-triage": {
+      "summary": {
+        "en": "An offline CLI for screening work requests and identifying risks and questions.",
+        "ja": "仕事の募集文を読み込み、受ける候補かどうかと、注意点や確認事項を出力するオフラインCLI。"
+      }
+    }
+  },
+  "excludeProjects": [
+    "soltonigiri/soltonigiri"
+  ]
+}
