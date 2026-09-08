@@ -10,12 +10,14 @@ function fixture() {
   const url = 'https://github.com/example/tool/pull/1';
   const reviewUrl = 'https://github.com/example/tool/pull/2#pullrequestreview-10';
   const config = {
-    version: 1, user: 'alice', intro: { en: 'I make tools.', ja: 'ツールを作っています。' },
-    availability: { en: 'Contact me.', ja: 'ご連絡ください。' },
+    version: 1, user: 'alice', intro: { en: 'I make **tools**.', ja: '**ツール**を作っています。' },
+    workTogether: { body: { en: 'Open to **work**.', ja: '**仕事**を募集しています。' }, label: { en: 'Contact →', ja: '連絡する →' }, url: 'https://example.com/contact' },
     links: [{ label: { en: 'Website', ja: 'サイト' }, url: 'https://example.com/' }],
+    featuredContributions: [{ label: 'tool #1', url, status: { en: 'Open', ja: '進行中' }, summary: { en: 'Fixed `retry` handling.', ja: '`retry`の処理を修正。' } }],
+    selectedProjects: ['alice/tool'],
     pullRequests: { [url]: { en: 'Fixed `retry` handling.', ja: '`retry`の処理を修正。' } },
     reviews: [{ url: reviewUrl, summary: { en: 'Verified the fix.', ja: '修正を検証。' } }],
-    projects: { 'alice/tool': { summary: { en: 'A tool.', ja: 'ツール。' }, demo: 'https://example.com/tool' } },
+    projects: { 'alice/tool': { summary: { en: 'A tool.', ja: 'ツール。' }, homeSummary: { en: 'A *featured* tool.', ja: '主な*ツール*。' }, homeLinks: [{ label: { en: 'Try →', ja: '試す →' }, url: 'https://example.com/tool' }], demo: 'https://example.com/tool' } },
     excludeProjects: ['alice/alice'],
   };
   const snapshot = {
@@ -66,7 +68,11 @@ test('all six pages have matching language navigation and retain editorial copy'
   assert.match(pages['pages/contributions.md'], /Fixed `retry` handling/);
   assert.match(pages['pages/contributions_ja.md'], /`retry`の処理を修正/);
   assert.match(pages['README.md'], /\.\/README_ja\.md/);
-  assert.doesNotMatch(pages['README.md'], /example\/tool|pull\/1/);
+  assert.match(pages['README.md'], /## 🚀 Open source/);
+  assert.match(pages['README.md'], /\*\*tools\*\*/);
+  assert.match(pages['README.md'], /tool #1/);
+  assert.match(pages['README.md'], /A \*featured\* tool/);
+  assert.match(pages['README_ja.md'], /## 🛠️ 主な作品/);
   for (const stem of ['contributions', 'projects']) {
     assert.match(pages[`pages/${stem}.md`], new RegExp(`\\./${stem}_ja\\.md`));
     assert.match(pages[`pages/${stem}_ja.md`], /\.\/README_ja\.md/);

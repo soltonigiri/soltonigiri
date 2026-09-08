@@ -20,7 +20,7 @@ SCPの異常存在の組み合わせを、理由とともに提示するCLI・TU
 
 [GitHub](https://github.com/soltonigiri/isorropia-engine)
 
-### kokoriko
+### KOKORIKO
 
 HUNTER×HUNTERの軍儀を対局・分析する非公式エンジン。C++による探索と、Pythonによる自己対戦・評価モデルの学習に対応。
 

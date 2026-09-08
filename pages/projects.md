@@ -20,7 +20,7 @@ A CLI and TUI for finding SCP anomaly pairings with explanations.
 
 [GitHub](https://github.com/soltonigiri/isorropia-engine)
 
-### kokoriko
+### KOKORIKO
 
 An unofficial engine for playing and analyzing Gungi from HUNTER×HUNTER, with C++ search and Python tools for self-play and evaluation model training.
 
