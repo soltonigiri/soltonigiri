@@ -10,9 +10,9 @@ An autoplaying 2048 web app with jazz and hand claps.
 
 ### dwun
 
-ハンター文字で読み書きできる、Luaベースのプログラミング言語。
+A Lua-based programming language using the Hunter alphabet. Run code in the browser and switch code and output between Hunter characters and kana.
 
-[GitHub](https://github.com/soltonigiri/dwun)
+[Demo](https://dwun.pages.dev/) · [GitHub](https://github.com/soltonigiri/dwun)
 
 ### isorropia-engine
 
@@ -22,7 +22,7 @@ A CLI and TUI for finding SCP anomaly pairings with explanations.
 
 ### kokoriko
 
-An unofficial Gungi engine with C++ search and Python self-play and training tools.
+An unofficial engine for playing and analyzing Gungi from HUNTER×HUNTER, with C++ search and Python tools for self-play and evaluation model training.
 
 [GitHub](https://github.com/soltonigiri/kokoriko)
 

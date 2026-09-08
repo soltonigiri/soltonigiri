@@ -31,7 +31,7 @@ Displayed the number of hidden items in the list and added validation and tests 
 ## Open
 
 [Jest \#16431](https://github.com/jestjs/jest/pull/16431)\
-fix: prepare coverage before notifying reporters
+Made coverage results, including untested files, available to custom reporters before their completion callbacks run.
 
 [Jest \#16427](https://github.com/jestjs/jest/pull/16427)\
 Documented why mocks can miss separately installed copies of a dependency and how to work around it.
@@ -60,7 +60,7 @@ Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to i
 ## Reviews and investigations
 
 [Jest \#16428](https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051)\
-fix\(jest-config\): don't blame the Node version when a \`.mts\` config throws
+Verified error messages from `.mts` configs on Node.js 20, 22, 24, and 25, including hints when type stripping is unavailable and errors from config factories.
 
 [Jest \#16409](https://github.com/jestjs/jest/pull/16409#pullrequestreview-5124351081)\
 Identified a `Symbol.toStringTag` case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.

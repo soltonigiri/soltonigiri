@@ -10,9 +10,9 @@ AIが2048を自動プレイし、ジャズに合わせてタイルが動く音�
 
 ### dwun
 
-ハンター文字で読み書きできる、Luaベースのプログラミング言語。
+ハンター文字で読み書きできる、Luaベースのプログラミング言語。ブラウザで実行でき、コードと実行結果をハンター文字・かなで切り替えて表示。
 
-[GitHub](https://github.com/soltonigiri/dwun)
+[デモ](https://dwun.pages.dev/) · [GitHub](https://github.com/soltonigiri/dwun)
 
 ### isorropia-engine
 
@@ -22,7 +22,7 @@ SCPの異常存在の組み合わせを、理由とともに提示するCLI・TU
 
 ### kokoriko
 
-An unofficial Gungi engine with C++ search and Python self-play and training tools.
+HUNTER×HUNTERの軍儀を対局・分析する非公式エンジン。C++による探索と、Pythonによる自己対戦・評価モデルの学習に対応。
 
 [GitHub](https://github.com/soltonigiri/kokoriko)
 

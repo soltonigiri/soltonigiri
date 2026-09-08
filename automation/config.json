@@ -91,6 +91,10 @@
     "https://github.com/langchain-ai/langchainjs/pull/11329": {
       "en": "Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to initialization to avoid duplicate output.",
       "ja": "`ChatBedrockConverse`に再試行設定を反映し、ストリーミングでは出力の重複を避けるため再試行を初期化時に限定。"
+    },
+    "https://github.com/jestjs/jest/pull/16431": {
+      "en": "Made coverage results, including untested files, available to custom reporters before their completion callbacks run.",
+      "ja": "カスタムレポーターの完了通知前に、未実行ファイルも含むカバレッジ結果を参照できるよう修正。"
     }
   },
   "reviews": [
@@ -170,6 +174,13 @@
         "en": "Reproduced assertion-state collisions between concurrent tests with identical titles and proposed a unique execution identifier.",
         "ja": "同じタイトルのテストを並行実行するとアサーションの状態が混ざる問題を再現し、実行ごとに一意の識別子を使うよう提案。"
       }
+    },
+    {
+      "url": "https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051",
+      "summary": {
+        "en": "Verified error messages from `.mts` configs on Node.js 20, 22, 24, and 25, including hints when type stripping is unavailable and errors from config factories.",
+        "ja": "Node.js 20・22・24・25で`.mts`設定のエラー表示を検証し、型除去が使えない場合のヒントと、設定を返す関数内のエラーも確認。"
+      }
     }
   ],
   "projects": {
@@ -225,6 +236,19 @@
       "summary": {
         "en": "An offline CLI for screening work requests and identifying risks and questions.",
         "ja": "仕事の募集文を読み込み、受ける候補かどうかと、注意点や確認事項を出力するオフラインCLI。"
+      }
+    },
+    "soltonigiri/dwun": {
+      "demo": "https://dwun.pages.dev/",
+      "summary": {
+        "en": "A Lua-based programming language using the Hunter alphabet. Run code in the browser and switch code and output between Hunter characters and kana.",
+        "ja": "ハンター文字で読み書きできる、Luaベースのプログラミング言語。ブラウザで実行でき、コードと実行結果をハンター文字・かなで切り替えて表示。"
+      }
+    },
+    "soltonigiri/kokoriko": {
+      "summary": {
+        "en": "An unofficial engine for playing and analyzing Gungi from HUNTER×HUNTER, with C++ search and Python tools for self-play and evaluation model training.",
+        "ja": "HUNTER×HUNTERの軍儀を対局・分析する非公式エンジン。C++による探索と、Pythonによる自己対戦・評価モデルの学習に対応。"
       }
     }
   },
