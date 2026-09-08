@@ -8,10 +8,10 @@
 Active Memoryの`recall error`がpromptに混ざる問題を再現し、修正。
 
 [pnpm \#13885](https://github.com/pnpm/pnpm/pull/13885)\
-長い依存パスを含む`.modules.yaml`をRust側でも読めるよう修正。
+長い依存パスを含む`.modules.yaml`の読み込みをTypeScriptとRustの両方で修正し、従来のYAML形式にも対応。
 
 [Jest \#16322](https://github.com/jestjs/jest/pull/16322)\
-`jest.retryTimes()`に`describe`単位の再実行を追加。
+`jest.retryTimes()`に`describe`単位の再試行を追加し、setup・teardown hookにも対応。
 
 [Jest \#16344](https://github.com/jestjs/jest/pull/16344)\
 再試行時に、対象外のinline snapshotまで削除される問題を修正。

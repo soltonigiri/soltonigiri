@@ -8,10 +8,10 @@
 Reproduced and fixed an issue where Active Memory `recall error` messages leaked into prompts.
 
 [pnpm \#13885](https://github.com/pnpm/pnpm/pull/13885)\
-Updated the Rust implementation to support reading `.modules.yaml` files containing long dependency paths.
+Fixed `.modules.yaml` parsing for long dependency paths in TypeScript and Rust, while preserving legacy YAML support.
 
 [Jest \#16322](https://github.com/jestjs/jest/pull/16322)\
-Added support for rerunning tests at the `describe` level with `jest.retryTimes()`.
+Added `describe`-level retries to `jest.retryTimes()`, including setup and teardown hooks.
 
 [Jest \#16344](https://github.com/jestjs/jest/pull/16344)\
 Fixed an issue where retries also deleted inline snapshots outside the retried test.

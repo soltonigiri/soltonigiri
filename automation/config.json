@@ -2,12 +2,19 @@
   "version": 1,
   "user": "soltonigiri",
   "intro": {
-    "en": "I contribute to open source and build web apps and CLI tools using TypeScript and Python.",
-    "ja": "TypeScriptとPythonを使い、OSSへのコントリビュートやWebアプリ・CLIの開発をしています。"
+    "en": "I contribute to **Jest, pnpm, and OpenClaw** and build developer tools and web apps.",
+    "ja": "**Jest、pnpm、OpenClaw**への貢献と、開発者向けツールやWebアプリの開発をしています。"
   },
-  "availability": {
-    "en": "Open to contract opportunities.",
-    "ja": "業務委託案件を募集しています。"
+  "workTogether": {
+    "body": {
+      "en": "Open to **work**.",
+      "ja": "**仕事**を募集しています。"
+    },
+    "label": {
+      "en": "Get in touch on X →",
+      "ja": "Xで連絡する →"
+    },
+    "url": "https://x.com/solt_onigiri_"
   },
   "links": [
     {
@@ -27,18 +34,61 @@
       "url": "https://x.com/solt_onigiri_"
     }
   ],
+  "featuredContributions": [
+    {
+      "label": "Jest #16322",
+      "url": "https://github.com/jestjs/jest/pull/16322",
+      "status": {
+        "en": "Merged",
+        "ja": "マージ済み"
+      },
+      "summary": {
+        "en": "Added `describe`-level retries to `jest.retryTimes()`, including setup and teardown hooks.",
+        "ja": "`jest.retryTimes()`に`describe`単位の再試行を追加し、setup・teardown hookにも対応。"
+      }
+    },
+    {
+      "label": "pnpm #13885",
+      "url": "https://github.com/pnpm/pnpm/pull/13885",
+      "status": {
+        "en": "Merged",
+        "ja": "マージ済み"
+      },
+      "summary": {
+        "en": "Fixed `.modules.yaml` parsing for long dependency paths in TypeScript and Rust, while preserving legacy YAML support.",
+        "ja": "長い依存パスを含む`.modules.yaml`の読み込みをTypeScriptとRustの両方で修正し、従来のYAML形式にも対応。"
+      }
+    },
+    {
+      "label": "Jest #16409",
+      "url": "https://github.com/jestjs/jest/pull/16409#discussion_r3939988901",
+      "status": {
+        "en": "Review",
+        "ja": "レビュー"
+      },
+      "summary": {
+        "en": "Found an edge case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.",
+        "ja": "`pretty-format`がアサーションの差分を表示せず例外を投げるケースを発見し、修正を検証。"
+      }
+    }
+  ],
+  "selectedProjects": [
+    "soltonigiri/kokoriko",
+    "soltonigiri/2048-radio",
+    "soltonigiri/dwun"
+  ],
   "pullRequests": {
     "https://github.com/openclaw/openclaw/pull/120658": {
       "en": "Reproduced and fixed an issue where Active Memory `recall error` messages leaked into prompts.",
       "ja": "Active Memoryの`recall error`がpromptに混ざる問題を再現し、修正。"
     },
     "https://github.com/pnpm/pnpm/pull/13885": {
-      "en": "Updated the Rust implementation to support reading `.modules.yaml` files containing long dependency paths.",
-      "ja": "長い依存パスを含む`.modules.yaml`をRust側でも読めるよう修正。"
+      "en": "Fixed `.modules.yaml` parsing for long dependency paths in TypeScript and Rust, while preserving legacy YAML support.",
+      "ja": "長い依存パスを含む`.modules.yaml`の読み込みをTypeScriptとRustの両方で修正し、従来のYAML形式にも対応。"
     },
     "https://github.com/jestjs/jest/pull/16322": {
-      "en": "Added support for rerunning tests at the `describe` level with `jest.retryTimes()`.",
-      "ja": "`jest.retryTimes()`に`describe`単位の再実行を追加。"
+      "en": "Added `describe`-level retries to `jest.retryTimes()`, including setup and teardown hooks.",
+      "ja": "`jest.retryTimes()`に`describe`単位の再試行を追加し、setup・teardown hookにも対応。"
     },
     "https://github.com/jestjs/jest/pull/16344": {
       "en": "Fixed an issue where retries also deleted inline snapshots outside the retried test.",
@@ -194,7 +244,20 @@
       "demoLabel": {
         "en": "Play",
         "ja": "遊ぶ"
-      }
+      },
+      "homeSummary": {
+        "en": "Let an AI play 2048 while you listen to jazz. Tiles move to the beat, with hand claps when they merge.",
+        "ja": "AIが2048をプレイするのを眺めながら、ジャズを聴けます。タイルは曲に合わせて動き、合体すると手拍子が鳴ります。"
+      },
+      "homeLinks": [
+        {
+          "label": {
+            "en": "Play →",
+            "ja": "遊ぶ →"
+          },
+          "url": "https://2048-radio.pages.dev/"
+        }
+      ]
     },
     "soltonigiri/yomei-exe": {
       "summary": {
@@ -243,13 +306,47 @@
       "summary": {
         "en": "A Lua-based programming language using the Hunter alphabet. Run code in the browser and switch code and output between Hunter characters and kana.",
         "ja": "ハンター文字で読み書きできる、Luaベースのプログラミング言語。ブラウザで実行でき、コードと実行結果をハンター文字・かなで切り替えて表示。"
-      }
+      },
+      "homeSummary": {
+        "en": "Write and run Lua-based programs in the Hunter alphabet. Switch code and output between Hunter characters and kana.",
+        "ja": "ハンター文字でプログラムを書いて、そのままブラウザで動かせます。コードと実行結果は、ハンター文字とかなを切り替えられます。"
+      },
+      "homeLinks": [
+        {
+          "label": {
+            "en": "Try it →",
+            "ja": "試す →"
+          },
+          "url": "https://dwun.pages.dev/"
+        }
+      ]
     },
     "soltonigiri/kokoriko": {
+      "name": "KOKORIKO",
       "summary": {
         "en": "An unofficial engine for playing and analyzing Gungi from HUNTER×HUNTER, with C++ search and Python tools for self-play and evaluation model training.",
         "ja": "HUNTER×HUNTERの軍儀を対局・分析する非公式エンジン。C++による探索と、Pythonによる自己対戦・評価モデルの学習に対応。"
-      }
+      },
+      "homeSummary": {
+        "en": "An AI for Gungi, the board game from *HUNTER×HUNTER*. It uses C++ to choose its next move and Python for self-play and training.",
+        "ja": "HUNTER×HUNTERに出てくる軍儀のAIです。C++で次の手を考え、Pythonで自己対戦や学習をしています。"
+      },
+      "homeLinks": [
+        {
+          "label": {
+            "en": "Code",
+            "ja": "コード"
+          },
+          "url": "https://github.com/soltonigiri/kokoriko"
+        },
+        {
+          "label": {
+            "en": "Benchmarks",
+            "ja": "ベンチマーク"
+          },
+          "url": "https://github.com/soltonigiri/kokoriko/blob/main/BENCHMARK.md"
+        }
+      ]
     }
   },
   "excludeProjects": [

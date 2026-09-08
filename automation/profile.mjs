@@ -20,6 +20,12 @@ export function safeUrl(value) {
 export function text(value) {
   return String(value).replace(/\s+/g, ' ').trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/[\\`*_{}\[\]()#!|~]/g, '\\$&');
 }
+export function inline(value) {
+  return text(value)
+    .replace(/\\`([^`]+)\\`/g, (_, content) => `\`${content.replace(/\\([()])/g, '$1')}\``)
+    .replace(/\\\*\\\*([^*]+)\\\*\\\*/g, '**$1**')
+    .replace(/\\\*([^*]+)\\\*/g, '*$1*');
+}
 export const link = (label, url) => `[${text(label)}](${safeUrl(url)})`;
 export function parseContributionUrl(value) {
   const m = /^https:\/\/github\.com\/([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)\/(pull|issues)\/([1-9]\d*)(?:#(pullrequestreview-|issuecomment-|discussion_r)([1-9]\d*))?$/.exec(value);
@@ -31,10 +37,15 @@ function bilingual(value) {
 }
 export function validateConfig(c) {
   assert(c?.version === 1 && /^[A-Za-z0-9-]+$/.test(c.user), 'Invalid profile identity');
-  assert(bilingual(c.intro) && bilingual(c.availability), 'Both introduction languages are required');
-  assert(Array.isArray(c.links) && Array.isArray(c.reviews) && Array.isArray(c.excludeProjects), 'Invalid profile lists');
+  assert(bilingual(c.intro) && bilingual(c.workTogether?.body) && bilingual(c.workTogether?.label), 'Both profile languages are required');
+  assert(Array.isArray(c.links) && Array.isArray(c.featuredContributions) && Array.isArray(c.selectedProjects) && Array.isArray(c.reviews) && Array.isArray(c.excludeProjects), 'Invalid profile lists');
+  safeUrl(c.workTogether.url);
   assert(c.pullRequests && c.projects, 'Missing editorial settings');
   for (const item of c.links) { assert(bilingual(item.label), 'Missing link label'); safeUrl(item.url); }
+  for (const item of c.featuredContributions) {
+    assert(typeof item.label === 'string' && bilingual(item.status) && bilingual(item.summary), 'Invalid featured contribution');
+    safeUrl(item.url);
+  }
   for (const [url, summary] of Object.entries(c.pullRequests)) {
     const parsed = parseContributionUrl(url);
     assert(parsed.kind === 'pull' && !parsed.fragment && bilingual(summary), 'Invalid PR description');
@@ -46,12 +57,18 @@ export function validateConfig(c) {
     seen.add(review.url);
   }
   for (const repo of c.excludeProjects) assert(repoPattern.test(repo), 'Invalid excluded repository');
+  for (const repo of c.selectedProjects) assert(repoPattern.test(repo), 'Invalid selected project');
   for (const [repo, item] of Object.entries(c.projects)) {
     assert(repoPattern.test(repo), 'Invalid project repository');
     if (item.name) assert(typeof item.name === 'string', 'Invalid project name');
     if (item.demoLabel) assert(bilingual(item.demoLabel), 'Demo label requires both languages');
     if (item.summary) assert(bilingual(item.summary), 'Project description requires both languages');
+    if (item.homeSummary) assert(bilingual(item.homeSummary), 'Home project description requires both languages');
     if (item.demo) safeUrl(item.demo);
+    if (item.homeLinks) for (const homeLink of item.homeLinks) {
+      assert(bilingual(homeLink.label), 'Home project link requires both languages');
+      safeUrl(homeLink.url);
+    }
   }
   return c;
 }
@@ -88,15 +105,15 @@ export function validateSnapshot(d, c) {
 }
 
 const labels = {
-  en: { home: 'Home', contributions: 'Contributions', projects: 'Personal projects', merged: 'Merged', open: 'Open', reviews: 'Reviews and investigations', closed: 'Closed without merge', archived: 'Archived projects', demo: 'Demo' },
-  ja: { home: 'ホーム', contributions: 'OSSへの貢献', projects: '個人開発', merged: 'マージ済み', open: '進行中', reviews: 'レビュー・調査', closed: '未マージで終了', archived: 'アーカイブ済みの作品', demo: 'デモ' },
+  en: { home: 'Home', contributions: 'Contributions', projects: 'Personal projects', openSource: 'Open source', selectedProjects: 'Selected projects', moreContributions: 'More contributions, reviews, and investigations →', moreProjects: 'More projects →', workTogether: 'Work together', merged: 'Merged', open: 'Open', reviews: 'Reviews and investigations', closed: 'Closed without merge', archived: 'Archived projects', demo: 'Demo' },
+  ja: { home: 'ホーム', contributions: 'OSSへの貢献', projects: '個人開発', openSource: 'OSSへの貢献', selectedProjects: '主な作品', moreContributions: 'その他の貢献・レビュー・調査 →', moreProjects: 'その他の作品 →', workTogether: '一緒に仕事をする', merged: 'マージ済み', open: '進行中', reviews: 'レビュー・調査', closed: '未マージで終了', archived: 'アーカイブ済みの作品', demo: 'デモ' },
 };
 const fileFor = (page, lang) => `${page === 'home' ? 'README' : `pages/${page}`}${lang === 'ja' ? '_ja' : ''}.md`;
 const hrefFor = (page, lang, from = 'home') => {
   const path = relative(dirname(fileFor(from, lang)), fileFor(page, lang));
   return path.startsWith('.') ? path : `./${path}`;
 };
-const langNav = (page, lang) => lang === 'en' ? `English | [日本語](${hrefFor(page, 'ja', page)})` : `[English](${hrefFor(page, 'en', page)}) | 日本語`;
+const langNav = (page, lang) => lang === 'en' ? `English · [日本語](${hrefFor(page, 'ja', page)})` : `[English](${hrefFor(page, 'en', page)}) · 日本語`;
 function header(page, lang, title) {
   if (page === 'home') return [`# ${title}`, langNav(page, lang)];
   const nav = ['home', 'contributions', 'projects'].filter(key => key !== page)
@@ -111,11 +128,16 @@ export function renderPages(c, d) {
   for (const lang of ['en', 'ja']) {
     const l = labels[lang];
     const home = header('home', lang, `Hi, I'm ${text(c.user)} 👋`);
-    home.push(text(c.intro[lang]), [
-      `🚀 [${l.contributions}](${hrefFor('contributions', lang)})`,
-      `🛠️ [${l.projects}](${hrefFor('projects', lang)})`,
-      ...c.links.map(item => `${item.emoji ?? '🔗'} ${link(item.label[lang], item.url)}`),
-    ].join('\\' + '\n'), text(c.availability[lang]));
+    home.push(inline(c.intro[lang]), c.links.map(item => link(item.label[lang], item.url)).join(' · '), `## 🚀 ${l.openSource}`);
+    home.push(...c.featuredContributions.map(item => `**[${text(item.label).replace(/\\#/g, '#')}](${safeUrl(item.url)}) · ${text(item.status[lang])}**\\
+${inline(item.summary[lang])}`));
+    home.push(`[${l.moreContributions}](${hrefFor('contributions', lang)})`, `## 🛠️ ${l.selectedProjects}`);
+    for (const repo of c.selectedProjects) {
+      const settings = c.projects[repo];
+      assert(settings?.homeSummary && settings.homeLinks, `Missing selected project settings for ${repo}`);
+      home.push(`### ${link(settings.name ?? repo.split('/')[1], `https://github.com/${repo}`)}`, inline(settings.homeSummary[lang]), settings.homeLinks.map(item => link(item.label[lang], item.url)).join(' · '));
+    }
+    home.push(`[${l.moreProjects}](${hrefFor('projects', lang)})`, `## 💬 ${l.workTogether}`, inline(c.workTogether.body[lang]), link(c.workTogether.label[lang], c.workTogether.url));
     pages[fileFor('home', lang)] = `${home.join('\n\n')}\n`;
 
     const contributions = header('contributions', lang, l.contributions);
