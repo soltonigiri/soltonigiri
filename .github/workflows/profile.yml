@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '17 0 * * *' # 09:17 Asia/Tokyo
+    - cron: '17 */3 * * *' # Every 3 hours at :17 UTC
   workflow_dispatch:
 
 permissions:
