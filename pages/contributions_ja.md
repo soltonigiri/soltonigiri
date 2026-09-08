@@ -30,6 +30,9 @@ skipまたはtodoの後も`currentlyRunningTest`が残る問題を修正。
 
 ## 進行中
 
+[Jest \#16431](https://github.com/jestjs/jest/pull/16431)\
+fix: prepare coverage before notifying reporters
+
 [Jest \#16427](https://github.com/jestjs/jest/pull/16427)\
 同じ依存モジュールが別々にインストールされているとモックが適用されない理由と、回避方法をドキュメントに追加。
 
@@ -55,6 +58,9 @@ worker logへ`console.trace()`のstackを追加し、Inspectorとtailの既存�
 `ChatBedrockConverse`に再試行設定を反映し、ストリーミングでは出力の重複を避けるため再試行を初期化時に限定。
 
 ## レビュー・調査
+
+[Jest \#16428](https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051)\
+fix\(jest-config\): don't blame the Node version when a \`.mts\` config throws
 
 [Jest \#16409](https://github.com/jestjs/jest/pull/16409#pullrequestreview-5124351081)\
 `Symbol.toStringTag`の指定で`pretty-format`が例外を投げ、アサーション失敗時の差分が表示されなくなる問題を指摘し、修正を確認。

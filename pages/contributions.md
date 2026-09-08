@@ -30,6 +30,9 @@ Displayed the number of hidden items in the list and added validation and tests 
 
 ## Open
 
+[Jest \#16431](https://github.com/jestjs/jest/pull/16431)\
+fix: prepare coverage before notifying reporters
+
 [Jest \#16427](https://github.com/jestjs/jest/pull/16427)\
 Documented why mocks can miss separately installed copies of a dependency and how to work around it.
 
@@ -55,6 +58,9 @@ Fixed stale row templates in `CdkTable` when `trackBy` preserves row identity bu
 Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to initialization to avoid duplicate output.
 
 ## Reviews and investigations
+
+[Jest \#16428](https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051)\
+fix\(jest-config\): don't blame the Node version when a \`.mts\` config throws
 
 [Jest \#16409](https://github.com/jestjs/jest/pull/16409#pullrequestreview-5124351081)\
 Identified a `Symbol.toStringTag` case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.
