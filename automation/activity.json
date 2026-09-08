@@ -323,9 +323,8 @@
       "repo": "jestjs/jest",
       "number": 16428,
       "url": "https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051",
-      "submittedAt": "2026-09-07T22:09:06Z",
-      "title": "fix(jest-config): don't blame the Node version when a `.mts` config throws"
+      "submittedAt": "2026-09-07T22:09:06Z"
     }
   ],
-  "checkedAt": "2026-09-08T09:21:18.522Z"
+  "checkedAt": "2026-09-08T09:24:17.232Z"
 }
