@@ -8,6 +8,12 @@ An autoplaying 2048 web app with jazz and hand claps.
 
 [Play](https://2048-radio.pages.dev/) · [GitHub](https://github.com/soltonigiri/2048-radio)
 
+### dwun
+
+ハンター文字で読み書きできる、Luaベースのプログラミング言語。
+
+[GitHub](https://github.com/soltonigiri/dwun)
+
 ### isorropia-engine
 
 A CLI and TUI for finding SCP anomaly pairings with explanations.

@@ -9,6 +9,12 @@
       "archived": false
     },
     {
+      "repo": "soltonigiri/dwun",
+      "description": "ハンター文字で読み書きできる、Luaベースのプログラミング言語。",
+      "homepage": null,
+      "archived": false
+    },
+    {
       "repo": "soltonigiri/isorropia-engine",
       "description": "Explainable SCP anomaly pairing for containment cycles, breaches, and double features",
       "homepage": null,
@@ -315,5 +321,5 @@
       "title": "fix(jest-config): don't blame the Node version when a `.mts` config throws"
     }
   ],
-  "checkedAt": "2026-09-08T04:34:27.124Z"
+  "checkedAt": "2026-09-08T08:57:41.909Z"
 }

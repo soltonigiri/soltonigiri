@@ -8,6 +8,12 @@ AIが2048を自動プレイし、ジャズに合わせてタイルが動く音�
 
 [遊ぶ](https://2048-radio.pages.dev/) · [GitHub](https://github.com/soltonigiri/2048-radio)
 
+### dwun
+
+ハンター文字で読み書きできる、Luaベースのプログラミング言語。
+
+[GitHub](https://github.com/soltonigiri/dwun)
+
 ### isorropia-engine
 
 SCPの異常存在の組み合わせを、理由とともに提示するCLI・TUI。
