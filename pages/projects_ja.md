@@ -20,6 +20,12 @@ SCPの異常存在の組み合わせを、理由とともに提示するCLI・TU
 
 [GitHub](https://github.com/soltonigiri/isorropia-engine)
 
+### kokoriko
+
+An unofficial Gungi engine with C++ search and Python self-play and training tools.
+
+[GitHub](https://github.com/soltonigiri/kokoriko)
+
 ### profile-site
 
 HTML・CSS・JavaScriptで作った、Cloudflare Pages上の日英プロフィールサイト。

@@ -21,6 +21,12 @@
       "archived": false
     },
     {
+      "repo": "soltonigiri/kokoriko",
+      "description": "An unofficial Gungi engine with C++ search and Python self-play and training tools.",
+      "homepage": null,
+      "archived": false
+    },
+    {
       "repo": "soltonigiri/profile-site",
       "description": "Bilingual open-source profile site built with HTML, CSS, JavaScript, and Cloudflare Pages.",
       "homepage": "https://soltonigiri.pages.dev/",
@@ -321,5 +327,5 @@
       "title": "fix(jest-config): don't blame the Node version when a `.mts` config throws"
     }
   ],
-  "checkedAt": "2026-09-08T08:57:41.909Z"
+  "checkedAt": "2026-09-08T09:21:18.522Z"
 }

@@ -20,6 +20,12 @@ A CLI and TUI for finding SCP anomaly pairings with explanations.
 
 [GitHub](https://github.com/soltonigiri/isorropia-engine)
 
+### kokoriko
+
+An unofficial Gungi engine with C++ search and Python self-play and training tools.
+
+[GitHub](https://github.com/soltonigiri/kokoriko)
+
 ### profile-site
 
 A bilingual profile site built with HTML, CSS, JavaScript, and Cloudflare Pages.
