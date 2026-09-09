@@ -2,13 +2,13 @@
   "version": 1,
   "user": "soltonigiri",
   "intro": {
-    "en": "I contribute to **Jest, pnpm, and OpenClaw** and build developer tools and web apps.",
-    "ja": "**Jest、pnpm、OpenClaw**への貢献と、開発者向けツールやWebアプリの開発をしています。"
+    "en": "I contribute to open source and build developer tools and web apps.",
+    "ja": "OSSへの貢献と、開発者向けツールやWebアプリの開発をしています。"
   },
   "workTogether": {
     "body": {
-      "en": "Open to **work**.",
-      "ja": "**仕事**を募集しています。"
+      "en": "Open to work.",
+      "ja": "お仕事募集中。"
     },
     "label": {
       "en": "Get in touch on X →",
@@ -36,39 +36,39 @@
   ],
   "featuredContributions": [
     {
-      "label": "Jest #16322",
+      "label": "Jest",
       "url": "https://github.com/jestjs/jest/pull/16322",
       "status": {
         "en": "Merged",
         "ja": "マージ済み"
       },
       "summary": {
-        "en": "Added `describe`-level retries to `jest.retryTimes()`, including setup and teardown hooks.",
-        "ja": "`jest.retryTimes()`に`describe`単位の再試行を追加し、setup・teardown hookにも対応。"
+        "en": "Added suite-level retries, including setup and teardown.",
+        "ja": "準備・後片付けも含めた、テストグループ単位の再試行を追加。"
       }
     },
     {
-      "label": "pnpm #13885",
+      "label": "pnpm",
       "url": "https://github.com/pnpm/pnpm/pull/13885",
       "status": {
         "en": "Merged",
         "ja": "マージ済み"
       },
       "summary": {
-        "en": "Fixed `.modules.yaml` parsing for long dependency paths in TypeScript and Rust, while preserving legacy YAML support.",
-        "ja": "長い依存パスを含む`.modules.yaml`の読み込みをTypeScriptとRustの両方で修正し、従来のYAML形式にも対応。"
+        "en": "Fixed long dependency-path errors in TypeScript and Rust.",
+        "ja": "長い依存パスで起きる読み込みエラーを、TypeScriptとRustの両方で修正。"
       }
     },
     {
-      "label": "Jest #16409",
-      "url": "https://github.com/jestjs/jest/pull/16409#discussion_r3939988901",
+      "label": "OpenClaw",
+      "url": "https://github.com/openclaw/openclaw/pull/120658",
       "status": {
-        "en": "Review",
-        "ja": "レビュー"
+        "en": "Merged",
+        "ja": "マージ済み"
       },
       "summary": {
-        "en": "Found an edge case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.",
-        "ja": "`pretty-format`がアサーションの差分を表示せず例外を投げるケースを発見し、修正を検証。"
+        "en": "Kept memory-recall error messages out of prompts.",
+        "ja": "メモリ呼び出しのエラーメッセージがプロンプトに混入する不具合を修正。"
       }
     }
   ],
@@ -246,8 +246,8 @@
         "ja": "遊ぶ"
       },
       "homeSummary": {
-        "en": "Let an AI play 2048 while you listen to jazz. Tiles move to the beat, with hand claps when they merge.",
-        "ja": "AIが2048をプレイするのを眺めながら、ジャズを聴けます。タイルは曲に合わせて動き、合体すると手拍子が鳴ります。"
+        "en": "AI plays 2048 to the beat of jazz.",
+        "ja": "ジャズのリズムに合わせて、AIが2048をプレイ。"
       },
       "homeLinks": [
         {
@@ -308,8 +308,8 @@
         "ja": "ハンター文字で読み書きできる、Luaベースのプログラミング言語。ブラウザで実行でき、コードと実行結果をハンター文字・かなで切り替えて表示。"
       },
       "homeSummary": {
-        "en": "Write and run Lua-based programs in the Hunter alphabet. Switch code and output between Hunter characters and kana.",
-        "ja": "ハンター文字でプログラムを書いて、そのままブラウザで動かせます。コードと実行結果は、ハンター文字とかなを切り替えられます。"
+        "en": "Write and run Lua in the Hunter alphabet.",
+        "ja": "ハンター文字でLuaを書いて、ブラウザで実行。"
       },
       "homeLinks": [
         {
@@ -328,8 +328,8 @@
         "ja": "HUNTER×HUNTERの軍儀を対局・分析する非公式エンジン。C++による探索と、Pythonによる自己対戦・評価モデルの学習に対応。"
       },
       "homeSummary": {
-        "en": "An AI for Gungi, the board game from *HUNTER×HUNTER*. It uses C++ to choose its next move and Python for self-play and training.",
-        "ja": "HUNTER×HUNTERに出てくる軍儀のAIです。C++で次の手を考え、Pythonで自己対戦や学習をしています。"
+        "en": "An AI for Gungi from HUNTER×HUNTER. C++ / Python.",
+        "ja": "HUNTER×HUNTERの軍儀AI。C++ / Python。"
       },
       "homeLinks": [
         {
@@ -338,13 +338,6 @@
             "ja": "コード"
           },
           "url": "https://github.com/soltonigiri/kokoriko"
-        },
-        {
-          "label": {
-            "en": "Benchmarks",
-            "ja": "ベンチマーク"
-          },
-          "url": "https://github.com/soltonigiri/kokoriko/blob/main/BENCHMARK.md"
         }
       ]
     }

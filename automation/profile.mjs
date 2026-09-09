@@ -105,8 +105,8 @@ export function validateSnapshot(d, c) {
 }
 
 const labels = {
-  en: { home: 'Home', contributions: 'Contributions', projects: 'Personal projects', openSource: 'Open source', selectedProjects: 'Selected projects', moreContributions: 'More contributions, reviews, and investigations →', moreProjects: 'More projects →', workTogether: 'Work together', merged: 'Merged', open: 'Open', reviews: 'Reviews and investigations', closed: 'Closed without merge', archived: 'Archived projects', demo: 'Demo' },
-  ja: { home: 'ホーム', contributions: 'OSSへの貢献', projects: '個人開発', openSource: 'OSSへの貢献', selectedProjects: '主な作品', moreContributions: 'その他の貢献・レビュー・調査 →', moreProjects: 'その他の作品 →', workTogether: '一緒に仕事をする', merged: 'マージ済み', open: '進行中', reviews: 'レビュー・調査', closed: '未マージで終了', archived: 'アーカイブ済みの作品', demo: 'デモ' },
+  en: { home: 'Home', contributions: 'Contributions', projects: 'Personal projects', openSource: 'Open source', selectedProjects: 'Selected projects', mergedContributions: 'Merged contributions', moreContributions: 'All activity →', moreProjects: 'All projects →', workTogether: 'Work together', merged: 'Merged', open: 'Open', reviews: 'Reviews and investigations', closed: 'Closed without merge', archived: 'Archived projects', demo: 'Demo' },
+  ja: { home: 'ホーム', contributions: 'OSSへの貢献', projects: '個人開発', openSource: 'OSSへの貢献', selectedProjects: '主な作品', mergedContributions: 'マージ済みのOSS貢献', moreContributions: 'すべての活動 →', moreProjects: 'すべての作品 →', workTogether: '一緒に仕事をする', merged: 'マージ済み', open: '進行中', reviews: 'レビュー・調査', closed: '未マージで終了', archived: 'アーカイブ済みの作品', demo: 'デモ' },
 };
 const fileFor = (page, lang) => `${page === 'home' ? 'README' : `pages/${page}`}${lang === 'ja' ? '_ja' : ''}.md`;
 const hrefFor = (page, lang, from = 'home') => {
@@ -128,16 +128,16 @@ export function renderPages(c, d) {
   for (const lang of ['en', 'ja']) {
     const l = labels[lang];
     const home = header('home', lang, `Hi, I'm ${text(c.user)} 👋`);
-    home.push(inline(c.intro[lang]), c.links.map(item => link(item.label[lang], item.url)).join(' · '), `## 🚀 ${l.openSource}`);
-    home.push(...c.featuredContributions.map(item => `**[${text(item.label).replace(/\\#/g, '#')}](${safeUrl(item.url)}) · ${text(item.status[lang])}**\\
-${inline(item.summary[lang])}`));
-    home.push(`[${l.moreContributions}](${hrefFor('contributions', lang)})`, `## 🛠️ ${l.selectedProjects}`);
-    for (const repo of c.selectedProjects) {
+    const contributionTitle = c.featuredContributions.every(item => item.status.en === 'Merged') ? l.mergedContributions : l.openSource;
+    home.push(inline(c.intro[lang]), `**${contributionTitle}** · [${l.moreContributions}](${hrefFor('contributions', lang)})`);
+    home.push(c.featuredContributions.map(item => `- **${link(item.label, item.url)}** — ${inline(item.summary[lang])}`).join('\n'));
+    home.push(`**${l.selectedProjects}** · [${l.moreProjects}](${hrefFor('projects', lang)})`);
+    home.push(c.selectedProjects.map(repo => {
       const settings = c.projects[repo];
-      assert(settings?.homeSummary && settings.homeLinks, `Missing selected project settings for ${repo}`);
-      home.push(`### ${link(settings.name ?? repo.split('/')[1], `https://github.com/${repo}`)}`, inline(settings.homeSummary[lang]), settings.homeLinks.map(item => link(item.label[lang], item.url)).join(' · '));
-    }
-    home.push(`[${l.moreProjects}](${hrefFor('projects', lang)})`, `## 💬 ${l.workTogether}`, inline(c.workTogether.body[lang]), link(c.workTogether.label[lang], c.workTogether.url));
+      assert(settings?.homeSummary && settings.homeLinks?.length, `Missing selected project settings for ${repo}`);
+      return `- **${link(settings.name ?? repo.split('/')[1], settings.homeLinks[0].url)}** — ${inline(settings.homeSummary[lang])}`;
+    }).join('\n'));
+    home.push([...c.links.map(item => link(item.label[lang], item.url)), inline(c.workTogether.body[lang])].join(' · '));
     pages[fileFor('home', lang)] = `${home.join('\n\n')}\n`;
 
     const contributions = header('contributions', lang, l.contributions);

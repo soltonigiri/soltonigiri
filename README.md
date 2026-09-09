@@ -2,47 +2,18 @@
 
 English · [日本語](./README_ja.md)
 
-I contribute to **Jest, pnpm, and OpenClaw** and build developer tools and web apps.
+I contribute to open source and build developer tools and web apps.
 
-[Portfolio](https://soltonigiri.pages.dev/) · [X / Contact](https://x.com/solt_onigiri_)
+**Merged contributions** · [All activity →](./pages/contributions.md)
 
-## 🚀 Open source
+- **[Jest](https://github.com/jestjs/jest/pull/16322)** — Added suite-level retries, including setup and teardown.
+- **[pnpm](https://github.com/pnpm/pnpm/pull/13885)** — Fixed long dependency-path errors in TypeScript and Rust.
+- **[OpenClaw](https://github.com/openclaw/openclaw/pull/120658)** — Kept memory-recall error messages out of prompts.
 
-**[Jest #16322](https://github.com/jestjs/jest/pull/16322) · Merged**\
-Added `describe`-level retries to `jest.retryTimes()`, including setup and teardown hooks.
+**Selected projects** · [All projects →](./pages/projects.md)
 
-**[pnpm #13885](https://github.com/pnpm/pnpm/pull/13885) · Merged**\
-Fixed `.modules.yaml` parsing for long dependency paths in TypeScript and Rust, while preserving legacy YAML support.
+- **[KOKORIKO](https://github.com/soltonigiri/kokoriko)** — An AI for Gungi from HUNTER×HUNTER. C++ / Python.
+- **[2048 Radio](https://2048-radio.pages.dev/)** — AI plays 2048 to the beat of jazz.
+- **[dwun](https://dwun.pages.dev/)** — Write and run Lua in the Hunter alphabet.
 
-**[Jest #16409](https://github.com/jestjs/jest/pull/16409#discussion_r3939988901) · Review**\
-Found an edge case that made `pretty-format` throw instead of displaying an assertion diff, and verified the fix.
-
-[More contributions, reviews, and investigations →](./pages/contributions.md)
-
-## 🛠️ Selected projects
-
-### [KOKORIKO](https://github.com/soltonigiri/kokoriko)
-
-An AI for Gungi, the board game from *HUNTER×HUNTER*. It uses C++ to choose its next move and Python for self-play and training.
-
-[Code](https://github.com/soltonigiri/kokoriko) · [Benchmarks](https://github.com/soltonigiri/kokoriko/blob/main/BENCHMARK.md)
-
-### [2048 Radio](https://github.com/soltonigiri/2048-radio)
-
-Let an AI play 2048 while you listen to jazz. Tiles move to the beat, with hand claps when they merge.
-
-[Play →](https://2048-radio.pages.dev/)
-
-### [dwun](https://github.com/soltonigiri/dwun)
-
-Write and run Lua-based programs in the Hunter alphabet. Switch code and output between Hunter characters and kana.
-
-[Try it →](https://dwun.pages.dev/)
-
-[More projects →](./pages/projects.md)
-
-## 💬 Work together
-
-Open to **work**.
-
-[Get in touch on X →](https://x.com/solt_onigiri_)
+[Portfolio](https://soltonigiri.pages.dev/) · [X / Contact](https://x.com/solt_onigiri_) · Open to work.
