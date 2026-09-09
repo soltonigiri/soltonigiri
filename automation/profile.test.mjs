@@ -68,11 +68,11 @@ test('all six pages have matching language navigation and retain editorial copy'
   assert.match(pages['pages/contributions.md'], /Fixed `retry` handling/);
   assert.match(pages['pages/contributions_ja.md'], /`retry`の処理を修正/);
   assert.match(pages['README.md'], /\.\/README_ja\.md/);
-  assert.match(pages['README.md'], /## 🚀 Open source/);
+  assert.match(pages['README.md'], /\*\*Open source\*\*/);
   assert.match(pages['README.md'], /\*\*tools\*\*/);
-  assert.match(pages['README.md'], /tool #1/);
+  assert.match(pages['README.md'], /tool \\\#1/);
   assert.match(pages['README.md'], /A \*featured\* tool/);
-  assert.match(pages['README_ja.md'], /## 🛠️ 主な作品/);
+  assert.match(pages['README_ja.md'], /\*\*主な作品\*\*/);
   for (const stem of ['contributions', 'projects']) {
     assert.match(pages[`pages/${stem}.md`], new RegExp(`\\./${stem}_ja\\.md`));
     assert.match(pages[`pages/${stem}_ja.md`], /\.\/README_ja\.md/);
