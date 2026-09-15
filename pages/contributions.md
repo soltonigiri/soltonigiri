@@ -4,6 +4,9 @@
 
 ## Merged
 
+[components \#33670](https://github.com/angular/components/pull/33670)\
+Fixed stale row templates in `CdkTable` when `trackBy` preserves row identity but the row definition changes.
+
 [OpenClaw \#120658](https://github.com/openclaw/openclaw/pull/120658)\
 Reproduced and fixed an issue where Active Memory `recall error` messages leaked into prompts.
 
@@ -50,9 +53,6 @@ Prevented duplicate span completion when an `ioredis` callback fires more than o
 
 [Jest \#16402](https://github.com/jestjs/jest/pull/16402)\
 Added ESM support for `snapshotResolver` and `snapshotSerializers`.
-
-[components \#33670](https://github.com/angular/components/pull/33670)\
-Fixed stale row templates in `CdkTable` when `trackBy` preserves row identity but the row definition changes.
 
 [langchainjs \#11329](https://github.com/langchain-ai/langchainjs/pull/11329)\
 Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to initialization to avoid duplicate output.

@@ -4,6 +4,9 @@
 
 ## マージ済み
 
+[components \#33670](https://github.com/angular/components/pull/33670)\
+`CdkTable`で`trackBy`による行の識別が変わらなくても、行定義が変わればテンプレートを更新するよう修正。
+
 [OpenClaw \#120658](https://github.com/openclaw/openclaw/pull/120658)\
 Active Memoryの`recall error`がpromptに混ざる問題を再現し、修正。
 
@@ -50,9 +53,6 @@ worker logへ`console.trace()`のstackを追加し、Inspectorとtailの既存�
 
 [Jest \#16402](https://github.com/jestjs/jest/pull/16402)\
 `snapshotResolver`と`snapshotSerializers`のESM対応を追加。
-
-[components \#33670](https://github.com/angular/components/pull/33670)\
-`CdkTable`で`trackBy`による行の識別が変わらなくても、行定義が変わればテンプレートを更新するよう修正。
 
 [langchainjs \#11329](https://github.com/langchain-ai/langchainjs/pull/11329)\
 `ChatBedrockConverse`に再試行設定を反映し、ストリーミングでは出力の重複を避けるため再試行を初期化時に限定。

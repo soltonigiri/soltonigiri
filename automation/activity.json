@@ -80,11 +80,11 @@
       "number": 33670,
       "url": "https://github.com/angular/components/pull/33670",
       "title": "fix(cdk/table): update rows when row definitions change",
-      "state": "open",
+      "state": "closed",
       "draft": false,
       "createdAt": "2026-08-13T06:03:01Z",
-      "mergedAt": null,
-      "closedAt": null
+      "mergedAt": "2026-09-15T07:36:10Z",
+      "closedAt": "2026-09-15T07:36:10Z"
     },
     {
       "repo": "cloudflare/workerd",
@@ -326,5 +326,5 @@
       "submittedAt": "2026-09-07T22:09:06Z"
     }
   ],
-  "checkedAt": "2026-09-08T09:24:17.232Z"
+  "checkedAt": "2026-09-15T11:52:09.256Z"
 }
