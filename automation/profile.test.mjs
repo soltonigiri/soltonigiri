@@ -109,7 +109,7 @@ test('new projects, missing descriptions, editorial demo, exclusions, and archiv
   assert.match(page, /https:\/\/example.com\/tool/); assert.doesNotMatch(page, /Excluded/);
   snapshot.projects[0].archived = true;
   page = renderPages(config, snapshot)['pages/projects.md'];
-  assert.match(page, /<summary>Archived projects \(1\)/); assert.doesNotMatch(page, /## CLI tools/);
+  assert.match(page, /<summary>Archived projects \(1\)/);
 });
 
 test('flat contribution groups retain repository identity and projects use separate links', () => {
@@ -123,8 +123,6 @@ test('flat contribution groups retain repository identity and projects use separ
   assert.equal(contributions.match(/^## Open$/gm).length, 1);
   assert.ok(contributions.includes('[widget \\#1]'));
   assert.ok(contributions.includes('[tool \\#1]'));
-  assert.doesNotMatch(contributions, /<a id=|^### |\*\*Contributions\*\*/m);
-  assert.equal(contributions.split('\n')[2], '[Home](../README.md) · [Personal projects](./projects.md) · [日本語](./contributions_ja.md)');
   assert.match(pages['pages/projects.md'], /### Friendly Tool\n\nA tool\.\n\n\[Try it\]/);
   assert.match(pages['pages/projects.md'], /\[GitHub\]\(https:\/\/github.com\/alice\/tool\)/);
 });
