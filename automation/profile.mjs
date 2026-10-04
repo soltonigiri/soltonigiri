@@ -105,8 +105,8 @@ export function validateSnapshot(d, c) {
 }
 
 const labels = {
-  en: { home: 'Home', contributions: 'Contributions', projects: 'Personal projects', openSource: 'Open source', selectedProjects: 'Selected projects', mergedContributions: 'Merged contributions', moreContributions: 'All activity →', moreProjects: 'All projects →', workTogether: 'Work together', merged: 'Merged', open: 'Open', reviews: 'Reviews and investigations', closed: 'Closed without merge', archived: 'Archived projects', demo: 'Demo' },
-  ja: { home: 'ホーム', contributions: 'OSSへの貢献', projects: '個人開発', openSource: 'OSSへの貢献', selectedProjects: '主な作品', mergedContributions: 'マージ済みのOSS貢献', moreContributions: 'すべての活動 →', moreProjects: 'すべての作品 →', workTogether: '一緒に仕事をする', merged: 'マージ済み', open: '進行中', reviews: 'レビュー・調査', closed: '未マージで終了', archived: 'アーカイブ済みの作品', demo: 'デモ' },
+  en: { home: 'Home', contributions: 'Contributions', projects: 'Personal projects', openSource: 'Open source', selectedProjects: 'Selected projects', mergedContributions: 'Merged contributions', moreContributions: 'All activity →', moreProjects: 'All projects →', merged: 'Merged', open: 'Open', reviews: 'Reviews and investigations', closed: 'Closed without merge', archived: 'Archived projects', demo: 'Demo' },
+  ja: { home: 'ホーム', contributions: 'OSSへの貢献', projects: '個人開発', openSource: 'OSSへの貢献', selectedProjects: '主な作品', mergedContributions: 'マージ済みのOSS貢献', moreContributions: 'すべての活動 →', moreProjects: 'すべての作品 →', merged: 'マージ済み', open: '進行中', reviews: 'レビュー・調査', closed: '未マージで終了', archived: 'アーカイブ済みの作品', demo: 'デモ' },
 };
 const fileFor = (page, lang) => `${page === 'home' ? 'README' : `pages/${page}`}${lang === 'ja' ? '_ja' : ''}.md`;
 const hrefFor = (page, lang, from = 'home') => {
@@ -125,6 +125,7 @@ const newest = date => (a, b) => compare(date(b) ?? '', date(a) ?? '') || compar
 const projectName = repo => ({ jest: 'Jest', openclaw: 'OpenClaw' })[repo.split('/')[1]] ?? repo.split('/')[1];
 export function renderPages(c, d) {
   const pages = {};
+  const reviewSummaries = new Map(c.reviews.map(review => [review.url, review.summary]));
   for (const lang of ['en', 'ja']) {
     const l = labels[lang];
     const home = header('home', lang, `Hi, I'm ${text(c.user)} 👋`);
@@ -149,7 +150,7 @@ ${c.pullRequests[p.url]?.[lang] ?? text(p.title)}`;
     ]) if (subset.length) contributions.push(`## ${label}`, [...subset].sort(newest(date)).map(row).join('\n\n'));
     const reviews = [...d.reviews].sort(newest(r => r.submittedAt));
     if (reviews.length) contributions.push(`## ${l.reviews}`, reviews.map(r => `${link(`${projectName(r.repo)} #${r.number}`, r.url)}\\
-${c.reviews.find(item => item.url === r.url)?.summary[lang] ?? text(r.title)}`).join('\n\n'));
+${reviewSummaries.get(r.url)?.[lang] ?? text(r.title)}`).join('\n\n'));
     const closed = d.pullRequests.filter(p => p.state === 'closed' && !p.mergedAt).sort(newest(p => p.closedAt));
     if (closed.length) contributions.push(`<details>\n<summary>${l.closed} (${closed.length})</summary>\n\n${closed.map(row).join('\n\n')}\n\n</details>`);
     pages[fileFor('contributions', lang)] = `${contributions.join('\n\n')}\n`;
