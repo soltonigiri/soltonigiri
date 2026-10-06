@@ -9,6 +9,12 @@
       "archived": false
     },
     {
+      "repo": "soltonigiri/codex-gemini-writer",
+      "description": "Codexの文章を人間用にするツール。",
+      "homepage": null,
+      "archived": false
+    },
+    {
       "repo": "soltonigiri/dwun",
       "description": "ハンター文字で読み書きできる、Luaベースのプログラミング言語。",
       "homepage": null,
@@ -326,5 +332,5 @@
       "submittedAt": "2026-09-07T22:09:06Z"
     }
   ],
-  "checkedAt": "2026-09-15T11:52:09.256Z"
+  "checkedAt": "2026-10-06T06:30:08.455Z"
 }

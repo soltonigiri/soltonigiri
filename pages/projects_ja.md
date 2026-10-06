@@ -8,6 +8,12 @@ AIが2048を自動プレイし、ジャズに合わせてタイルが動く音�
 
 [遊ぶ](https://2048-radio.pages.dev/) · [GitHub](https://github.com/soltonigiri/2048-radio)
 
+### codex-gemini-writer
+
+Codexの文章を人間用にするツール。
+
+[GitHub](https://github.com/soltonigiri/codex-gemini-writer)
+
 ### dwun
 
 ハンター文字で読み書きできる、Luaベースのプログラミング言語。ブラウザで実行でき、コードと実行結果をハンター文字・かなで切り替えて表示。

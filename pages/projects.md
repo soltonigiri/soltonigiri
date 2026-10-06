@@ -8,6 +8,12 @@ An autoplaying 2048 web app with jazz and hand claps.
 
 [Play](https://2048-radio.pages.dev/) · [GitHub](https://github.com/soltonigiri/2048-radio)
 
+### codex-gemini-writer
+
+Codexの文章を人間用にするツール。
+
+[GitHub](https://github.com/soltonigiri/codex-gemini-writer)
+
 ### dwun
 
 A Lua-based programming language using the Hunter alphabet. Run code in the browser and switch code and output between Hunter characters and kana.
