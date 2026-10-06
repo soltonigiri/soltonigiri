@@ -8,6 +8,12 @@ An autoplaying 2048 web app with jazz and hand claps.
 
 [Play](https://2048-radio.pages.dev/) · [GitHub](https://github.com/soltonigiri/2048-radio)
 
+### asken-scraper
+
+自分のあすけん記録をJSON・CSVで取り出す非公式ツール
+
+[GitHub](https://github.com/soltonigiri/asken-scraper)
+
 ### codex-gemini-writer
 
 Codexの文章を人間用にするツール。
