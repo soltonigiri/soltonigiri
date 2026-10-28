@@ -54,9 +54,6 @@ worker logへ`console.trace()`のstackを追加し、Inspectorとtailの既存�
 [Jest \#16402](https://github.com/jestjs/jest/pull/16402)\
 `snapshotResolver`と`snapshotSerializers`のESM対応を追加。
 
-[langchainjs \#11329](https://github.com/langchain-ai/langchainjs/pull/11329)\
-`ChatBedrockConverse`に再試行設定を反映し、ストリーミングでは出力の重複を避けるため再試行を初期化時に限定。
-
 ## レビュー・調査
 
 [Jest \#16428](https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051)\
@@ -94,3 +91,11 @@ prefixが重なるtable keyの補間に挿入順依存があることを指摘�
 
 [Jest \#16340](https://github.com/jestjs/jest/pull/16340#pullrequestreview-4945115474)\
 同じタイトルのテストを並行実行するとアサーションの状態が混ざる問題を再現し、実行ごとに一意の識別子を使うよう提案。
+
+<details>
+<summary>未マージで終了 (1)</summary>
+
+[langchainjs \#11329](https://github.com/langchain-ai/langchainjs/pull/11329)\
+`ChatBedrockConverse`に再試行設定を反映し、ストリーミングでは出力の重複を避けるため再試行を初期化時に限定。
+
+</details>

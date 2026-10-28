@@ -54,9 +54,6 @@ Prevented duplicate span completion when an `ioredis` callback fires more than o
 [Jest \#16402](https://github.com/jestjs/jest/pull/16402)\
 Added ESM support for `snapshotResolver` and `snapshotSerializers`.
 
-[langchainjs \#11329](https://github.com/langchain-ai/langchainjs/pull/11329)\
-Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to initialization to avoid duplicate output.
-
 ## Reviews and investigations
 
 [Jest \#16428](https://github.com/jestjs/jest/pull/16428#pullrequestreview-5135474051)\
@@ -94,3 +91,11 @@ Found that the built-in async resolver could not reach the new optimization path
 
 [Jest \#16340](https://github.com/jestjs/jest/pull/16340#pullrequestreview-4945115474)\
 Reproduced assertion-state collisions between concurrent tests with identical titles and proposed a unique execution identifier.
+
+<details>
+<summary>Closed without merge (1)</summary>
+
+[langchainjs \#11329](https://github.com/langchain-ai/langchainjs/pull/11329)\
+Made `ChatBedrockConverse` honor retry settings, limiting streaming retries to initialization to avoid duplicate output.
+
+</details>

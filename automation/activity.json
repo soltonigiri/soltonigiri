@@ -202,11 +202,11 @@
       "number": 11329,
       "url": "https://github.com/langchain-ai/langchainjs/pull/11329",
       "title": "fix(aws): honor Bedrock Converse retry configuration",
-      "state": "open",
+      "state": "closed",
       "draft": false,
       "createdAt": "2026-08-10T11:40:51Z",
       "mergedAt": null,
-      "closedAt": null
+      "closedAt": "2026-10-28T00:09:07Z"
     },
     {
       "repo": "open-telemetry/opentelemetry-js-contrib",
@@ -338,5 +338,5 @@
       "submittedAt": "2026-09-07T22:09:06Z"
     }
   ],
-  "checkedAt": "2026-10-06T16:00:21.922Z"
+  "checkedAt": "2026-10-28T05:53:23.412Z"
 }
