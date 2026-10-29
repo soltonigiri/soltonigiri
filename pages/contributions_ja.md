@@ -4,6 +4,9 @@
 
 ## マージ済み
 
+[opentelemetry-js-contrib \#3710](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710)\
+SQS・SNSがメッセージを拒否する原因となる空のコンテキスト伝播属性を除外し、属性数の上限10件の判定も修正。
+
 [components \#33670](https://github.com/angular/components/pull/33670)\
 `CdkTable`で`trackBy`による行の識別が変わらなくても、行定義が変わればテンプレートを更新するよう修正。
 
@@ -38,9 +41,6 @@ skipまたはtodoの後も`currentlyRunningTest`が残る問題を修正。
 
 [Jest \#16427](https://github.com/jestjs/jest/pull/16427)\
 同じ依存モジュールが別々にインストールされているとモックが適用されない理由と、回避方法をドキュメントに追加。
-
-[opentelemetry-js-contrib \#3710](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710)\
-SQS・SNSがメッセージを拒否する原因となる空のコンテキスト伝播属性を除外し、属性数の上限10件の判定も修正。
 
 [oxc \#26160](https://github.com/oxc-project/oxc/pull/26160)\
 `no-useless-spread`の誤検出を修正し、呼び出し元の型が不明な`slice()`の結果ではスプレッド構文を維持。

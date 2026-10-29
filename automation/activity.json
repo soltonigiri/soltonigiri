@@ -224,11 +224,11 @@
       "number": 3710,
       "url": "https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710",
       "title": "fix(instrumentation-aws-sdk): omit empty propagation attributes",
-      "state": "open",
+      "state": "closed",
       "draft": false,
       "createdAt": "2026-08-29T04:56:29Z",
-      "mergedAt": null,
-      "closedAt": null
+      "mergedAt": "2026-10-28T21:00:13Z",
+      "closedAt": "2026-10-28T21:00:13Z"
     },
     {
       "repo": "openclaw/openclaw",
@@ -338,5 +338,5 @@
       "submittedAt": "2026-09-07T22:09:06Z"
     }
   ],
-  "checkedAt": "2026-10-28T05:53:23.412Z"
+  "checkedAt": "2026-10-29T01:01:53.544Z"
 }

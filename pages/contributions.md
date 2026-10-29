@@ -4,6 +4,9 @@
 
 ## Merged
 
+[opentelemetry-js-contrib \#3710](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710)\
+Excluded empty context propagation attributes that cause SQS and SNS to reject messages, and corrected handling of the 10-attribute limit.
+
 [components \#33670](https://github.com/angular/components/pull/33670)\
 Fixed stale row templates in `CdkTable` when `trackBy` preserves row identity but the row definition changes.
 
@@ -38,9 +41,6 @@ Made coverage results, including untested files, available to custom reporters b
 
 [Jest \#16427](https://github.com/jestjs/jest/pull/16427)\
 Documented why mocks can miss separately installed copies of a dependency and how to work around it.
-
-[opentelemetry-js-contrib \#3710](https://github.com/open-telemetry/opentelemetry-js-contrib/pull/3710)\
-Excluded empty context propagation attributes that cause SQS and SNS to reject messages, and corrected handling of the 10-attribute limit.
 
 [oxc \#26160](https://github.com/oxc-project/oxc/pull/26160)\
 Fixed false positives in `no-useless-spread` so spreads around `slice()` results are preserved when the receiver type is unknown.
